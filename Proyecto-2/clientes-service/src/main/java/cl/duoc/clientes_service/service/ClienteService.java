@@ -1,0 +1,52 @@
+package cl.duoc.clientes_service.service;
+
+import cl.duoc.clientes_service.dto.ClienteDTO;
+import cl.duoc.clientes_service.mapper.ClienteMapper;
+import cl.duoc.clientes_service.model.Cliente;
+import cl.duoc.clientes_service.repository.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class ClienteService {
+
+    @Autowired
+    private ClienteRepository clienteRepository;
+
+    @Autowired
+    private ClienteMapper mapper;
+
+    public List<Cliente> findAll(){
+        return clienteRepository.findAll();
+    }
+
+    public ClienteDTO findById(Long id) {
+        Cliente cliente = clienteRepository.findById(id).orElse(null);
+        return mapper.toDTO(cliente);
+    }
+
+    public Cliente save(Cliente c){
+        return clienteRepository.save(c);
+    }
+
+    public void delete(Long id) {
+        clienteRepository.deleteById(id);
+    }
+
+    public Cliente update(Cliente c, Long id) {
+        Cliente actualizar = clienteRepository.findById(id).orElse(null);
+        if(actualizar == null) return null;
+
+        actualizar.setRut(c.getRut());
+        actualizar.setNombre(c.getNombre());
+        actualizar.setApellido(c.getApellido());
+        actualizar.setCorreo(c.getCorreo());
+        actualizar.setTelefono(c.getTelefono());
+        actualizar.setEmpresa(c.getEmpresa());
+
+        return clienteRepository.save(actualizar);
+    }
+
+}
