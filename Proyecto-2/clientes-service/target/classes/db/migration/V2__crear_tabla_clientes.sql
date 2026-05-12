@@ -9,3 +9,4 @@ create table clientes(
 
     foreign key (empresa_id) references empresas(empresa_id)
 );
+

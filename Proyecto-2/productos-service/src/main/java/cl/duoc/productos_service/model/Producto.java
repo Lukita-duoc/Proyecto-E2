@@ -1,27 +1,24 @@
 package cl.duoc.productos_service.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
 @Data
-
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "productos")
 public class Producto {
 
     @Id
-    @NotNull (message = "Debe tener como minimo 1 valor.")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_producto")
     private Long idProducto;
-
 
     @NotBlank(message = "El campo no debe estar vacio.")
     private String nombre;
@@ -29,17 +26,19 @@ public class Producto {
     @NotBlank (message = "El campo no debe estar vacio.")
     private String descripcion;
 
-    @NotNull (message = "Debe tener como minimo 1 valor.")
+    @NotNull (message = "El precio no debe ser nulo")
+    @Positive(message = "El precio no puede ser menor a 0")
     private int precio;
 
-    @NotNull (message = "Debe tener como minimo 1 valor.")
+    @NotNull (message = "El stock no debe ser nulo")
+    @Positive(message = "El Stock no puede ser menor a 0")
     private int stock;
 
     @NotBlank (message = "El campo no debe estar vacio.")
     private String categoria;
 
     @ManyToOne
-    @JoinColumn(nullable = false, name = "idmarca")
+    @JoinColumn(nullable = false, name = "id_marca")
     @NotNull (message = "Debe tener como minimo 1 valor.")
-    private Marca idMarca;
+    private Marca Marca;
 }

@@ -3,7 +3,9 @@ package cl.duoc.clientes_service.service;
 import cl.duoc.clientes_service.dto.ClienteDTO;
 import cl.duoc.clientes_service.mapper.ClienteMapper;
 import cl.duoc.clientes_service.model.Cliente;
+import cl.duoc.clientes_service.model.Empresa;
 import cl.duoc.clientes_service.repository.ClienteRepository;
+import cl.duoc.clientes_service.repository.EmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,9 @@ public class ClienteService {
 
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private EmpresaRepository empresaRepository;
 
     @Autowired
     private ClienteMapper mapper;
@@ -28,6 +33,8 @@ public class ClienteService {
     }
 
     public Cliente save(Cliente c){
+        Empresa e = empresaRepository.findById(c.getEmpresa().getEmpresa_id()).orElse(null);
+        c.setEmpresa(e);
         return clienteRepository.save(c);
     }
 
