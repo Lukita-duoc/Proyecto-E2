@@ -44,5 +44,5 @@ public class Cliente {
     @NotNull(message = "La empresa es obligatoria")
     private Empresa empresa;
 
-    private String f;
+
 }
