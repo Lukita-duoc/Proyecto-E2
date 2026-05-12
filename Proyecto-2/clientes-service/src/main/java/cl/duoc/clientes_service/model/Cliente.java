@@ -20,6 +20,8 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_cliente;
 
+
+
     @NotNull
     @Positive(message = "El rut no puede ser negativo")
     @Column(nullable = false, unique = true)
