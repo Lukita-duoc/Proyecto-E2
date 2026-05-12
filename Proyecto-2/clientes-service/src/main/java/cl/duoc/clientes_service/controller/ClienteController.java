@@ -18,10 +18,6 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
-    @GetMapping("/saludo")
-    public String saludo(){
-        return "hola cliente";
-    }
 
     @GetMapping
     public ResponseEntity<?> listar() {
@@ -34,4 +30,6 @@ public class ClienteController {
         if(c == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(c);
     }
+
+
 }
