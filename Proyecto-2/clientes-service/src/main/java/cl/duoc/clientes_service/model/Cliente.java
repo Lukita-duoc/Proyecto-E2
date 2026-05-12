@@ -1,10 +1,7 @@
 package cl.duoc.clientes_service.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -46,4 +43,6 @@ public class Cliente {
     @JoinColumn(name = "empresa_id", nullable = false)
     @NotNull(message = "La empresa es obligatoria")
     private Empresa empresa;
+
+    private String f;
 }
