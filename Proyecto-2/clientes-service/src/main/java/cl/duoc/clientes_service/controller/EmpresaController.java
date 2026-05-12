@@ -1,6 +1,7 @@
 package cl.duoc.clientes_service.controller;
 
 import cl.duoc.clientes_service.dto.EmpresaDTO;
+import cl.duoc.clientes_service.model.Cliente;
 import cl.duoc.clientes_service.model.Empresa;
 import cl.duoc.clientes_service.service.EmpresaService;
 import jakarta.validation.Valid;
@@ -40,6 +41,13 @@ public class EmpresaController {
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         empresaService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id, @Valid @RequestBody Empresa e) {
+        Empresa empresa = empresaService.update(e, id);
+        if(empresa == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(empresa);
     }
 
 }
