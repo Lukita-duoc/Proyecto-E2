@@ -21,9 +21,6 @@ public class EmpresaController {
         return ResponseEntity.ok(empresaService.findAll());
     }
 
-    @GetMapping("/saludo")
-    public String saludo(){
-        return "hola empresa";
-    }
+
 
 }
