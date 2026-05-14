@@ -37,7 +37,10 @@ public class InventarioService {
     }
 
     public Inventario save(Inventario i) {
-
+        ProductoDTO producto = productoFeign.buscarDTO(i.getProductoId());
+        if(producto == null) return null;
+        SucursalDTO sucursal = sucursalFeign.buscarDTO(i.getProductoId());
+        if(sucursal == null) return null;
         return inventarioRepository.save(i);
     }
 
@@ -63,7 +66,13 @@ public class InventarioService {
         if(inventario == null) return null;
         InventarioDTO dto = mapper.toDTO(inventario);
         ProductoDTO producto = productoFeign.buscarDTO(inventario.getProductoId());
+        if(producto != null) {
+            dto.setNombreProducto(producto.getNombre());
+        }
         SucursalDTO sucursal = sucursalFeign.buscarDTO(inventario.getSucursalId());
+        if(sucursal != null) {
+            dto.setNombreSucursal(sucursal.getNombreSucursal());
+        }
 
         return dto;
     }
