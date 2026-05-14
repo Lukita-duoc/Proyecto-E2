@@ -39,11 +39,11 @@ public class ProveedorService {
         Proveedor actualizar = proveedorRepository.findById(id).orElse(null);
         if(actualizar == null) return null;
 
-        actualizar.setRazon_social(p.getRazon_social());
+        actualizar.setRazonSocial(p.getRazonSocial());
         actualizar.setCorreo(p.getCorreo());
         actualizar.setTelefono(p.getTelefono());
         actualizar.setPais(p.getPais());
-        actualizar.setTipo_proveedor(p.getTipo_proveedor());
+        actualizar.setTipoProveedor(p.getTipoProveedor());
 
         return proveedorRepository.save(actualizar);
     }

@@ -8,12 +8,13 @@ import org.springframework.stereotype.Component;
 public class ContactoProveedorMapper {
     public ContactoProveedorDTO toDTO(ContactoProveedor cop){
         if(cop == null)return null;
+
         ContactoProveedorDTO dto = new ContactoProveedorDTO();
-        dto.setNombre_contacto(cop.getNombre_contacto());
+
+        dto.setNombrecontacto(cop.getNombreContacto());
         dto.setCargo(cop.getCargo());
         dto.setTelefono(cop.getTelefono());
-        dto.setTipo_proveedor(cop.getProveedor().getTipo_proveedor());
-
+        dto.setTipoProveedor(cop.getProveedor().getTipoProveedor());
 
         return dto;
     }

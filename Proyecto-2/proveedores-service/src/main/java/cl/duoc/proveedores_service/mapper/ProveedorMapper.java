@@ -10,10 +10,10 @@ public class ProveedorMapper {
     public ProveedorDTO toDTO(Proveedor p){
         if(p == null) return null;
         ProveedorDTO dto = new ProveedorDTO();
-        dto.setRazon_social(p.getRazon_social());
+        dto.setRazonSocial(p.getRazonSocial());
         dto.setCorreo(p.getCorreo());
         dto.setPais(p.getPais());
-        dto.setTipo_proveedor(p.getTipo_proveedor());
+        dto.setTipoProveedor(p.getTipoProveedor());
         dto.setTelefono(p.getTelefono());
 
         return dto;

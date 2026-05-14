@@ -5,10 +5,10 @@ import lombok.Data;
 @Data
 public class ContactoProveedorDTO {
 
-    private String nombre_contacto;
+    private String nombrecontacto;
     private String cargo;
     private String telefono;
-    private String tipo_proveedor;
+    private String tipoProveedor;
 
 
 }

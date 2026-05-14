@@ -24,6 +24,7 @@ public class ContactoProveedorService {
     @Autowired
     private ContactoProveedorMapper mapper;
 
+
     public List<ContactoProveedor> findAll(){
         return conProRepository.findAll();
     }
@@ -33,7 +34,7 @@ public class ContactoProveedorService {
     }
 
     public ContactoProveedor save(ContactoProveedor cop){
-        Proveedor p = proveedorRepository.findById(cop.getProveedor().getId_proveedor()).orElse(null);
+        Proveedor p =  proveedorRepository.findById(cop.getIdContacto()).orElse(null);
         cop.setProveedor(p);
         return conProRepository.save(cop);
     }
@@ -46,7 +47,7 @@ public class ContactoProveedorService {
         ContactoProveedor actualizar = conProRepository.findById(id).orElse(null);
         if(actualizar == null) return null;
 
-        actualizar.setNombre_contacto(cop.getNombre_contacto());
+        actualizar.setNombreContacto(cop.getNombreContacto());
         actualizar.setCargo(cop.getCargo());
         actualizar.setTelefono(cop.getTelefono());
         actualizar.setProveedor(cop.getProveedor());

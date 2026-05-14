@@ -16,11 +16,12 @@ public class ContactoProveedor {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Long id_contacto;
+    @Column(name = "id_contacto")
+    private Long idContacto;
 
     @NotBlank(message = "El campo no debe estar vacío")
-    @Column(nullable = false)
-    private String nombre_contacto;
+    @Column(nullable = false, name = "nombre_contacto")
+    private String nombreContacto;
 
     @NotBlank(message = "El campo no debe estar vacío")
     @Column(nullable = false)

@@ -16,11 +16,12 @@ public class Proveedor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_proveedor;
+    @Column(name = "id_proveedor")
+    private Long idProveedor;
 
     @NotBlank(message = "El campo no puede estar vacío")
-    @Column(nullable = false)
-    private String razon_social;
+    @Column(nullable = false, name = "razon_social")
+    private String razonSocial;
 
     @Email
     @NotBlank(message = "El correo no puede estar en blanco")
@@ -36,7 +37,7 @@ public class Proveedor {
     private String pais;
 
     @NotBlank(message = "El campo no puede estar en blanco")
-    @Column(nullable = false)
-    private String tipo_proveedor;
+    @Column(nullable = false, name = "tipo_proveedor")
+    private String tipoProveedor;
 }
 

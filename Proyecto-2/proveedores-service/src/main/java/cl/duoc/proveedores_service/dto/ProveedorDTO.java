@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class ProveedorDTO {
 
-    private String razon_social;
+    private String razonSocial;
     private String correo;
     private String pais;
-    private String tipo_proveedor;
+    private String tipoProveedor;
     private String telefono;
 }
