@@ -9,6 +9,15 @@
         <module name="api-gateway" />
         <module name="eureka-service" />
       </profile>
+      <profile name="Annotation profile for inventario-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+        </processorPath>
+        <module name="inventario-service" />
+      </profile>
       <profile name="Annotation profile for proveedores-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -24,15 +33,6 @@
         <module name="clientes-service" />
         <module name="facturacion-service" />
         <module name="productos-service" />
-      </profile>
-      <profile name="Annotation profile for inventario-service" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
-        </processorPath>
-        <module name="inventario-service" />
       </profile>
     </annotationProcessing>
   </component>
