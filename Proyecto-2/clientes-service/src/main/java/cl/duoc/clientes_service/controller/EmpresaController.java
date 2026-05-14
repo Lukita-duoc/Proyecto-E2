@@ -26,9 +26,15 @@ public class EmpresaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
-        EmpresaDTO e = empresaService.findById(id);
+        Empresa e = empresaService.findById(id);
         if(e == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(e);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<?>> listarDTO () {
+        List<EmpresaDTO> listaDTO = empresaService.listaDetallada();
+        return ResponseEntity.ok(listaDTO);
     }
 
     @PostMapping

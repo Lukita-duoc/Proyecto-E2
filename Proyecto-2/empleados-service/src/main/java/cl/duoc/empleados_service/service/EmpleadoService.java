@@ -51,7 +51,7 @@ public class EmpleadoService {
         e.setCorreo(empleado.getCorreo());
         e.setCargo(empleado.getCargo());
         e.setFechaContrato(empleado.getFechaContrato());
-        e.setSucursal(e.getSucursal());
+        e.setSucursal(empleado.getSucursal());
 
         return empleadoRepository.save(e);
     }

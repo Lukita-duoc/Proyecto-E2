@@ -34,7 +34,7 @@ public class Empleado {
     @Column(nullable = false)
     private String cargo;
     @NotNull(message = "EL contrato no puede ser nulo")
-    @Column(nullable = false)
+    @Column(nullable = false, name = "fecha_contrato")
     private LocalDate fechaContrato;
     @ManyToOne
     @JoinColumn(name = "id_sucursal", nullable = false)

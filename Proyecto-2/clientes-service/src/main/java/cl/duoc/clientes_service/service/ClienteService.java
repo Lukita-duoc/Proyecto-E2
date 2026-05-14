@@ -9,6 +9,7 @@ import cl.duoc.clientes_service.repository.EmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,9 +28,9 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    public ClienteDTO findById(Long id) {
-        Cliente cliente = clienteRepository.findById(id).orElse(null);
-        return mapper.toDTO(cliente);
+    public Cliente findById(Long id) {
+        return clienteRepository.findById(id).orElse(null);
+
     }
 
     public Cliente save(Cliente c){
@@ -54,6 +55,17 @@ public class ClienteService {
         actualizar.setEmpresa(c.getEmpresa());
 
         return clienteRepository.save(actualizar);
+    }
+
+    public List<ClienteDTO> listaDetallada() {
+        List<Cliente> listado = clienteRepository.findAll();
+        List<ClienteDTO> listaDTO = new ArrayList<>();
+
+        for (Cliente c : listado) {
+            ClienteDTO dto = mapper.toDTO(c);
+            listaDTO.add(dto);
+        }
+        return listaDTO;
     }
 
 }

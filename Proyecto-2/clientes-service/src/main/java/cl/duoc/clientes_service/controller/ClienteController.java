@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/clientes")
 public class ClienteController {
@@ -23,9 +25,15 @@ public class ClienteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarid(@Valid @PathVariable Long id) {
-        ClienteDTO c = clienteService.findById(id);
+        Cliente c = clienteService.findById(id);
         if(c == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(c);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<?>> listaDTO() {
+        List<ClienteDTO> listado = clienteService.listaDetallada();
+        return ResponseEntity.ok(listado);
     }
 
     @PostMapping

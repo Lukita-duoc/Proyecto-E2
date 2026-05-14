@@ -8,6 +8,7 @@ import cl.duoc.clientes_service.repository.EmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,9 +24,8 @@ public class EmpresaService {
         return empresaRepository.findAll();
     }
 
-    public EmpresaDTO findById(Long id) {
-        Empresa e = empresaRepository.findById(id).orElse(null);
-        return mapper.toDTO(e);
+    public Empresa findById(Long id) {
+        return empresaRepository.findById(id).orElse(null);
     }
 
     public Empresa save(Empresa e) {
@@ -46,6 +46,17 @@ public class EmpresaService {
 
         return empresaRepository.save(actualizar);
 
+    }
+
+    public List<EmpresaDTO> listaDetallada() {
+        List<Empresa> listado = empresaRepository.findAll();
+        List<EmpresaDTO> listaDTO = new ArrayList<>();
+
+        for (Empresa e : listado) {
+            EmpresaDTO dto = mapper.toDTO(e);
+            listaDTO.add(dto);
+        }
+        return listaDTO;
     }
 
 

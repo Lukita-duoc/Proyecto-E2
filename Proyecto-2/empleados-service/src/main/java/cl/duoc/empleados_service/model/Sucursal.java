@@ -25,7 +25,7 @@ public class Sucursal {
     @Column(nullable = false)
     private String ciudad;
     @NotNull(message = "La capacidad no puede ser nula")
-    @PositiveOrZero(message = "La capacidad no puede ser menor a 0")
+    @PositiveOrZero
     @Column(nullable = false)
-    private int capacidad;
+    private Integer capacidad;
 }
