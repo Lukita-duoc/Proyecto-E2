@@ -31,10 +31,10 @@ public class ProductoController {
         return ResponseEntity.ok(p);
     }
 
-    @GetMapping("/listaDetallada")
-    public ResponseEntity<List<?>> listarDTO(){
-        List<ProductoDTO> dto = productoService.listaDetallada();
-        if(dto == null) return ResponseEntity.noContent().build();
+    @GetMapping("/listaDetallada/{id}")
+    public ResponseEntity<?> listarDTO(@PathVariable Long id){
+        ProductoDTO dto = productoService.buscarDTO(id);
+        if(dto == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(dto);
     }
 

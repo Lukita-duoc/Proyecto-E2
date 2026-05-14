@@ -56,14 +56,10 @@ public class ProductoService {
         return productoRepository.save(producto);
     }
 
-    public List<ProductoDTO> listaDetallada(){
-        List<Producto> listado = productoRepository.findAll();
-        List<ProductoDTO> listadoDTO = new ArrayList<>();
 
-        for (Producto p : listado) {
-            ProductoDTO dto = mapper.toDTO(p);
-            listadoDTO.add(dto);
-        }
-        return listadoDTO;
+    public ProductoDTO buscarDTO(Long id) {
+        Producto producto = productoRepository.findById(id).orElse(null);
+        if(producto == null) return null;
+        return mapper.toDTO(producto);
     }
 }

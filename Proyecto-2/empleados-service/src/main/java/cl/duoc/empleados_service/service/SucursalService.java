@@ -46,15 +46,10 @@ public class SucursalService {
         return sucursalRepository.save(sucursal);
     }
 
-    public List<SucursalDTO> listaDetallada() {
-        List<Sucursal> listado = sucursalRepository.findAll();
-        List<SucursalDTO> listaDTO = new ArrayList<>();
-
-        for (Sucursal s : listado) {
-            SucursalDTO dto = mapper.toDTO(s);
-            listaDTO.add(dto);
-        }
-        return listaDTO;
+    public SucursalDTO buscarDTO(Long id) {
+        Sucursal sucursal = sucursalRepository.findById(id).orElse(null);
+        if(sucursal == null) return null;
+        return mapper.toDTO(sucursal);
     }
 
 }

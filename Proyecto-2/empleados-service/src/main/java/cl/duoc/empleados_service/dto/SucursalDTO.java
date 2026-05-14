@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class SucursalDTO {
+    private Long id;
     private String nombreSucursal;
     private String ciudad;
 }

@@ -1,9 +1,11 @@
 package cl.duoc.inventario_service.service;
 
+import cl.duoc.inventario_service.dto.InventarioDTO;
 import cl.duoc.inventario_service.dto.ProductoDTO;
 import cl.duoc.inventario_service.dto.SucursalDTO;
 import cl.duoc.inventario_service.feign.ProductoFeign;
 import cl.duoc.inventario_service.feign.SucursalFeign;
+import cl.duoc.inventario_service.mapper.InventarioMapper;
 import cl.duoc.inventario_service.model.Inventario;
 import cl.duoc.inventario_service.repository.InventarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class InventarioService {
 
     @Autowired
     private SucursalFeign sucursalFeign;
+
+    @Autowired
+    private InventarioMapper mapper;
 
     public List<Inventario> findAll() {
         return inventarioRepository.findAll();
@@ -51,5 +56,15 @@ public class InventarioService {
         inventario.setSucursalId(i.getSucursalId());
 
         return inventarioRepository.save(inventario);
+    }
+
+    public InventarioDTO buscarDTO(Long id) {
+        Inventario inventario = inventarioRepository.findById(id).orElse(null);
+        if(inventario == null) return null;
+        InventarioDTO dto = mapper.toDTO(inventario);
+        ProductoDTO producto = productoFeign.buscarDTO(inventario.getProductoId());
+        SucursalDTO sucursal = sucursalFeign.buscarDTO(inventario.getSucursalId());
+
+        return dto;
     }
 }

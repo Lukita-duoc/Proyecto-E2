@@ -31,9 +31,9 @@ public class SucursalController {
         return ResponseEntity.ok(s);
     }
 
-    @GetMapping("/listaDetallada")
-    public ResponseEntity<List<?>> listaDetallada() {
-        List<SucursalDTO> dto = sucursalService.listaDetallada();
+    @GetMapping("/listaDetallada/{id}")
+    public ResponseEntity<?> listaDetallada(@PathVariable Long id) {
+        SucursalDTO dto = sucursalService.buscarDTO(id);
         return ResponseEntity.ok(dto);
     }
 

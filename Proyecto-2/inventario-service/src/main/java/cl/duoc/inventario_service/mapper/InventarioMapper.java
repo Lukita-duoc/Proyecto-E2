@@ -7,4 +7,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class InventarioMapper {
 
+    public InventarioDTO toDTO(Inventario i) {
+        InventarioDTO dto = new InventarioDTO();
+
+        dto.setId(i.getIdInventario());
+        dto.setCantidad(i.getStockActual());
+        dto.setProductoId(i.getProductoId());
+        dto.setSucursalId(i.getSucursalId());
+
+        return dto;
+    }
+
 }
