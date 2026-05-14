@@ -11,8 +11,6 @@ public class EmpresaMapper {
     public EmpresaDTO toDTO(Empresa e) {
         if(e == null) return null;
         EmpresaDTO dto = new EmpresaDTO();
-
-        dto.setId(e.getEmpresa_id());
         dto.setNombreEmpresa(e.getNombreEmpresa());
         dto.setTipoEmpresa(e.getTipoEmpresa());
 
