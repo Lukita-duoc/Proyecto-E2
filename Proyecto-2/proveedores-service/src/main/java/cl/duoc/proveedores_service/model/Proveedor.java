@@ -19,7 +19,7 @@ public class Proveedor {
     @Column(name = "id_proveedor")
     private Long idProveedor;
 
-    @NotBlank(message = "El campo no puede estar vacío")
+    @NotBlank(message = "La razon social no puede estar vacío")
     @Column(nullable = false, name = "razon_social")
     private String razonSocial;
 
