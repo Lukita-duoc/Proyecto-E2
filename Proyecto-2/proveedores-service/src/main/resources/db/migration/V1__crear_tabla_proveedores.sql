@@ -4,5 +4,5 @@ create table proveedores(
        correo varchar(50) not null ,
        telefono varchar(50) not null,
        pais varchar(50) not null ,
-       tipo_proveedor not null
+       tipo_proveedor varchar(50) not null
 );
