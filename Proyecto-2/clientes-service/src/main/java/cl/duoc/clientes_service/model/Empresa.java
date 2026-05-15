@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "empresas")
 public class Empresa {
 
-    //lucassdc
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long empresa_id;

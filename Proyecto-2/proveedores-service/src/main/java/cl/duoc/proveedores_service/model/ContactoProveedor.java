@@ -11,10 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "contacto-proveedor")
+@Table(name = "contacto-proveedores")
 public class ContactoProveedor {
-
-    //Kri
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)

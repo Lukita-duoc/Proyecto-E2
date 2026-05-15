@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "clientes")
 public class Cliente {
 
-    //fef
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
