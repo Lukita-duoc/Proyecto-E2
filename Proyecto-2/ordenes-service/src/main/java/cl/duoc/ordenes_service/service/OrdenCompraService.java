@@ -54,8 +54,14 @@ public class OrdenCompraService {
         ordenCompra.setEstado(o.getEstado());
         ordenCompra.setId(o.getId());
 
+
         return ordenRepository.save(ordenCompra);
     }
-    public OrdenDTO buscarDTO(long)
+    public OrdenDTO buscarDTO(Long id){
+        OrdenCompra orden = ordenRepository.findById(id).orElse(null);
+        if(orden == null)return null;
+        OrdenDTO dto = mapper.toDTO(orden);
+        //Calmasion, necesito llamar aqui al de producto. la wea...
+    }
 
 }
