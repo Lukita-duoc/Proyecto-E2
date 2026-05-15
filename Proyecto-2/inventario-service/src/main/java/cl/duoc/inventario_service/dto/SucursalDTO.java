@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 public class SucursalDTO {
     private Long id;
-    @JsonProperty("nombreSucursal")
+
     private String nombreSucursal;
 }

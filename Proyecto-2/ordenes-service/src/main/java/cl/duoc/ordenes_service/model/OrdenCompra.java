@@ -24,15 +24,15 @@ public class OrdenCompra {
     @Column(nullable = false)
     private LocalDateTime fecha;
 
-    @NotBlank (message = "El campo no debe estar vacio")
+    @NotBlank (message = "El estado no debe estar vacio")
     @Column(nullable = false)
     private String estado;
 
-    @NotNull(message = "El valor no debe ser 0")
+    @NotNull(message = "El valor no debe ser nulo")
     @Column(nullable = false)
     private Integer total;
 
-    @NotNull(message = "El id no debe estar vacio ")
+    @NotNull(message = "El id no debe ser nulo ")
     @Column(name = "cliente_id", nullable = false)
     private Long clienteId;
 

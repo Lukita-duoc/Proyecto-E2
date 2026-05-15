@@ -1,16 +1,20 @@
 package cl.duoc.ordenes_service.service;
 
 import cl.duoc.ordenes_service.dto.ClienteDTO;
+import cl.duoc.ordenes_service.dto.DetalleOrdenDTO;
 import cl.duoc.ordenes_service.dto.OrdenDTO;
 import cl.duoc.ordenes_service.dto.ProductoDTO;
 import cl.duoc.ordenes_service.feign.ClienteFeign;
 import cl.duoc.ordenes_service.feign.ProductoFeign;
 import cl.duoc.ordenes_service.mapper.OrdenMapper;
+import cl.duoc.ordenes_service.model.DetalleOrden;
 import cl.duoc.ordenes_service.model.OrdenCompra;
+import cl.duoc.ordenes_service.repository.DetalleOrdenRepository;
 import cl.duoc.ordenes_service.repository.OrdenCompraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,6 +22,9 @@ public class OrdenCompraService {
 
     @Autowired
     private OrdenCompraRepository ordenRepository;
+
+    @Autowired
+    private DetalleOrdenRepository detalleRepository;
 
     @Autowired
     private ProductoFeign productoFeign;
@@ -35,12 +42,10 @@ public class OrdenCompraService {
     public OrdenCompra save(OrdenCompra o){
             ClienteDTO cliente = clienteFeign.buscarDTO(o.getClienteId());
             if(cliente == null) return null;
-            ProductoDTO producto = productoFeign.buscarDTO(o.getClienteId());
-            if(producto == null) return null;
             return ordenRepository.save(o);
         }
 
-        public void deleteById(Long id){
+    public void deleteById(Long id) {
         ordenRepository.deleteById(id);
     }
 
@@ -50,18 +55,38 @@ public class OrdenCompraService {
 
         ordenCompra.setClienteId(o.getClienteId());
         ordenCompra.setTotal(o.getTotal());
-        ordenCompra.setFecha(o.getFecha());
         ordenCompra.setEstado(o.getEstado());
-        ordenCompra.setId(o.getId());
-
 
         return ordenRepository.save(ordenCompra);
     }
+
     public OrdenDTO buscarDTO(Long id){
         OrdenCompra orden = ordenRepository.findById(id).orElse(null);
         if(orden == null)return null;
         OrdenDTO dto = mapper.toDTO(orden);
-        //Calmasion, necesito llamar aqui al de producto. la wea...
+
+        List<DetalleOrden> detalle = detalleRepository.findByOrdenId(orden);
+        List<DetalleOrdenDTO> listaDTO = new ArrayList<>();
+
+        for (DetalleOrden d : detalle) {
+            DetalleOrdenDTO deto = mapper.toDetalleDTO(d);
+            ProductoDTO prod = productoFeign.buscarDTO(d.getProductoId());
+            if(prod != null) {
+                deto.setNombre(prod.getNombre());
+            }
+            listaDTO.add(deto);
+
+        }
+
+        dto.setDetalles(listaDTO);
+
+        return dto;
+
     }
+
+
+
+
+
 
 }
