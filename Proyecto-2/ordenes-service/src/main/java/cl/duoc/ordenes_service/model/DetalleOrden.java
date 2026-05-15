@@ -22,7 +22,7 @@ public class DetalleOrden {
 
     @NotNull(message = "El subtotal no debe estar null")
     @Column(nullable = false)
-    private Integer cantidad;
+    private int cantidad;
 
     @NotNull(message = "El subtotal no debe estar null")
     @Column(nullable = false)

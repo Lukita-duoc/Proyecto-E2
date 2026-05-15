@@ -11,7 +11,7 @@ public class OrdenDTO {
     private Long idOrden;
     private LocalDateTime fecha;
     private String estado;
-    private Integer total;
+    private int total;
     private Long clienteId;
     private List<DetalleOrdenDTO> detalles;
 }

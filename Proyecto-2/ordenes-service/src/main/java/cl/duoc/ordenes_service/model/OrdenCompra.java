@@ -30,7 +30,7 @@ public class OrdenCompra {
 
     @NotNull(message = "El valor no debe ser nulo")
     @Column(nullable = false)
-    private Integer total;
+    private int total;
 
     @NotNull(message = "El id no debe ser nulo ")
     @Column(name = "cliente_id", nullable = false)
