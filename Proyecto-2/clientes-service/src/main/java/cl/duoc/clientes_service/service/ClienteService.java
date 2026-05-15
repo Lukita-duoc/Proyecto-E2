@@ -57,15 +57,11 @@ public class ClienteService {
         return clienteRepository.save(actualizar);
     }
 
-    public List<ClienteDTO> listaDetallada() {
-        List<Cliente> listado = clienteRepository.findAll();
-        List<ClienteDTO> listaDTO = new ArrayList<>();
-
-        for (Cliente c : listado) {
-            ClienteDTO dto = mapper.toDTO(c);
-            listaDTO.add(dto);
-        }
-        return listaDTO;
+    public ClienteDTO buscarDTO(Long id) {
+        Cliente c = clienteRepository.findById(id).orElse(null);
+        if(c == null) return null;
+        ClienteDTO dto = mapper.toDTO(c);
+        return dto;
     }
 
 }

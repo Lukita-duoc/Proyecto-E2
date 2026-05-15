@@ -31,7 +31,7 @@ public class EmpresaController {
         return ResponseEntity.ok(e);
     }
 
-    @GetMapping
+    @GetMapping("/listaDetallada")
     public ResponseEntity<List<?>> listarDTO () {
         List<EmpresaDTO> listaDTO = empresaService.listaDetallada();
         return ResponseEntity.ok(listaDTO);

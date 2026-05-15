@@ -30,9 +30,9 @@ public class ClienteController {
         return ResponseEntity.ok(c);
     }
 
-    @GetMapping
-    public ResponseEntity<List<?>> listaDTO() {
-        List<ClienteDTO> listado = clienteService.listaDetallada();
+    @GetMapping("/buscardto/{id}")
+    public ResponseEntity<?> listaDTO(@PathVariable Long id) {
+        ClienteDTO listado = clienteService.buscarDTO(id);
         return ResponseEntity.ok(listado);
     }
 
