@@ -1,12 +1,8 @@
-create table contacto_proveedores(
-
-    id_contacto bigint autoincrement primary key,
-    nombreContacto varchar(50) not null,
-    cargo varchar(50) not null,
-    telefono varchar(9) not null,
-    id_proveedor bigint not null,
-
-    foreign key (id_proveedor) references proveedores(id_proveedor)
-
-
+CREATE TABLE contacto_proveedores (
+                                      id_contacto BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                      nombre_contacto VARCHAR(50) NOT NULL,
+                                      cargo VARCHAR(50) NOT NULL,
+                                      telefono VARCHAR(9) NOT NULL,
+                                      id_proveedor BIGINT NOT NULL,
+                                      FOREIGN KEY (id_proveedor) REFERENCES proveedores(id_proveedor)
 );
