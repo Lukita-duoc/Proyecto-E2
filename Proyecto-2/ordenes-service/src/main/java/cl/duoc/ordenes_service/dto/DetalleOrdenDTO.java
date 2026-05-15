@@ -5,9 +5,6 @@ import lombok.Data;
 @Data
 public class DetalleOrdenDTO {
 
-    private Long idDetalle;
+    private Long productoId;
     private Integer cantidad;
-    private Double subtotal;
-    private ProductoDTO producto;
-
 }

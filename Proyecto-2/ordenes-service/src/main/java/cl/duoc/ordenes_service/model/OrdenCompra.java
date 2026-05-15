@@ -32,7 +32,7 @@ public class OrdenCompra {
     @Column(nullable = false)
     private Integer total;
 
-    @NotNull(message = "El id no debe estar vacio")
+    @NotNull(message = "El id no debe estar vacio ")
     @Column(name = "cliente_id", nullable = false)
     private Long clienteId;
 
