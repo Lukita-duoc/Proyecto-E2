@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "clientes-service")
 public interface ClienteFeign {
     @GetMapping("/buscardto/{id}")
-    ClienteDTO buscarDTO(@PathVariable Long id);
+    ClienteDTO listaDTO(@PathVariable Long id);
 
     }
 

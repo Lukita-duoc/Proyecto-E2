@@ -39,7 +39,7 @@ public class FacturaService {
     }
 
     public Factura save(Factura f) {
-        ClienteDTO cliente = clienteFeign.buscarDTO(f.getIdCliente());
+        ClienteDTO cliente = clienteFeign.listaDTO(f.getIdCliente());
         if(cliente == null) return null;
 
         OrdenesDTO orden = ordenFeign.buscarDTO(f.getIdOrden());
