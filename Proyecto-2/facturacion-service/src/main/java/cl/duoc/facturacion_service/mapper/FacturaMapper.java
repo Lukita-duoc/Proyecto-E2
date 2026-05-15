@@ -4,6 +4,8 @@ import cl.duoc.facturacion_service.dto.FacturaDTO;
 import cl.duoc.facturacion_service.model.Factura;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 @Component
 public class FacturaMapper {
 
@@ -17,6 +19,8 @@ public class FacturaMapper {
         dto.setTotal(f.getTotal());
         dto.setIdCliente(f.getIdCliente());
         dto.setIdOrden(f.getIdOrden());
+
+        dto.setNombresProductos(new ArrayList<>());
 
         return dto;
     }
