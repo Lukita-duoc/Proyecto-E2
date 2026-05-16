@@ -14,5 +14,5 @@ public class OrdenesDTO {
     private int total;
     private Long clienteId;
 
-    private List<DetalleOrdenDTO> detalles;
+    private List<DetalleOrdenDTO> detalle;
 }

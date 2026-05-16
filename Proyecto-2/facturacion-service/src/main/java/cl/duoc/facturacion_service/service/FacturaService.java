@@ -45,6 +45,7 @@ public class FacturaService {
         OrdenesDTO orden = ordenFeign.buscarDTO(f.getIdOrden());
         if(orden == null) return null;
 
+        f.setTotal(orden.getTotal());
         return facturaRepository.save(f);
     }
 
@@ -60,14 +61,18 @@ public class FacturaService {
 
         OrdenesDTO orden = ordenFeign.buscarDTO(factura.getIdOrden());
 
-        if(orden != null && orden.getDetalles() != null) {
+        if(orden != null && orden.getDetalle() != null) {
             List<String> listaNombre = new ArrayList<>();
 
-            for (DetalleOrdenDTO detalle : orden.getDetalles()) {
+            for (DetalleOrdenDTO detalle : orden.getDetalle()) {
                 listaNombre.add(detalle.getNombre());
             }
             dto.setNombresProductos(listaNombre);
         }
         return dto;
+    }
+
+    public List<Factura> findByIdCliente(Long idCliente) {
+        return facturaRepository.findByIdCliente(idCliente);
     }
 }

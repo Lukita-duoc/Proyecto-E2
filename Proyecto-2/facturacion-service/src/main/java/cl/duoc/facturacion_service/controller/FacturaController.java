@@ -38,6 +38,12 @@ public class FacturaController {
         return ResponseEntity.ok(dto);
     }
 
+    @GetMapping("/cliente/{idCliente}")
+    public ResponseEntity<List<?>> listarPorIdCliente(@PathVariable Long idCliente) {
+        List<Factura> facturas = facturaService.findByIdCliente(idCliente);
+        return ResponseEntity.ok(facturas);
+    }
+
     @PostMapping
     public ResponseEntity<?> guardar(@Valid @RequestBody Factura factura) {
         Factura f = facturaService.save(factura);

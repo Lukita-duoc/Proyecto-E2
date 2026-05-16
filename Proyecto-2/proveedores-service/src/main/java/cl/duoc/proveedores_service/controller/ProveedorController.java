@@ -38,6 +38,11 @@ public class ProveedorController {
         return ResponseEntity.ok(dto);
     }
 
+    @GetMapping("/pais/{pais}")
+    public ResponseEntity<List<?>> agruparPais(@PathVariable String pais) {
+        return ResponseEntity.ok(proveedorService.findByPais(pais));
+    }
+
     @PostMapping
     public ResponseEntity<?> guardar (@Valid @RequestBody Proveedor p){
         Proveedor proveedor = proveedorService.save(p);

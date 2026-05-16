@@ -34,7 +34,7 @@ public class ContactoProveedorService {
     }
 
     public ContactoProveedor save(ContactoProveedor cop){
-        Proveedor p =  proveedorRepository.findById(cop.getIdContacto()).orElse(null);
+        Proveedor p =  proveedorRepository.findById(cop.getProveedor().getIdProveedor()).orElse(null);
         cop.setProveedor(p);
         return conProRepository.save(cop);
     }

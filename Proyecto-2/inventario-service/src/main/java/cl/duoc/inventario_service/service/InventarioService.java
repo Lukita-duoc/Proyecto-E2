@@ -39,7 +39,7 @@ public class InventarioService {
     public Inventario save(Inventario i) {
         ProductoDTO producto = productoFeign.buscarDTO(i.getProductoId());
         if(producto == null) return null;
-        SucursalDTO sucursal = sucursalFeign.buscarDTO(i.getProductoId());
+        SucursalDTO sucursal = sucursalFeign.buscarDTO(i.getSucursalId());
         if(sucursal == null) return null;
         return inventarioRepository.save(i);
     }
@@ -75,5 +75,13 @@ public class InventarioService {
         }
 
         return dto;
+    }
+
+    public Inventario findByProductoSucursal(Long productoId, Long SucursalId) {
+        return inventarioRepository.findByProductoIdAndSucursalId(productoId, SucursalId).orElse(null);
+    }
+
+    public List<Inventario> obtenerStock(){
+        return inventarioRepository.findStockCritico();
     }
 }

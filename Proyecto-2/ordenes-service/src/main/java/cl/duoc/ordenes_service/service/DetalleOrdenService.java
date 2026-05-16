@@ -20,8 +20,6 @@ public class    DetalleOrdenService {
     @Autowired
     private ProductoFeign productoFeign;
 
-    @Autowired
-    private OrdenCompraRepository ordenCompraRepository;
 
     public List<DetalleOrden> findAll() {
         return detalleOrdenRepository.findAll();
@@ -52,24 +50,6 @@ public class    DetalleOrdenService {
         return detalleOrdenRepository.save(detalle);
     }
 
-    public DetalleOrden guardarDetalle(DetalleOrden detalle) {
-        OrdenCompra orden = ordenCompraRepository.findById(detalle.getOrdenId().getId()).orElse(null);
-        if(orden == null) return null;
-        ProductoDTO producto = productoFeign.buscarDTO(detalle.getProductoId());
-        if(producto == null) return null;
-        double calculo = (double) (producto.getPrecio() * detalle.getCantidad());
-        detalle.setSubtotal(calculo);
-        DetalleOrden detalleGuardar = detalleOrdenRepository.save(detalle);
-        List<DetalleOrden> todosDetalles = detalleOrdenRepository.findByOrdenId(orden);
-        int suma = 0;
-        for (DetalleOrden d : todosDetalles) {
-            suma += d.getSubtotal().intValue();
-        }
-        orden.setTotal(suma);
-        ordenCompraRepository.save(orden);
-
-        return detalleGuardar;
-    }
 
 
 }

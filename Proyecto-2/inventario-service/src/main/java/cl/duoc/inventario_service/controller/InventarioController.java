@@ -38,6 +38,19 @@ public class InventarioController {
         return ResponseEntity.ok(dto);
     }
 
+    @GetMapping("/buscar-stock")
+    public ResponseEntity<Inventario> buscarStock(@RequestParam Long productoId, @RequestParam Long sucursalId) {
+        Inventario i = inventarioService.findByProductoSucursal(productoId, sucursalId);
+        if( i == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(i);
+    }
+
+    @GetMapping("/reporte-critico")
+    public ResponseEntity<List<?>> reporteCritico() {
+        List<Inventario> lista = inventarioService.obtenerStock();
+        return ResponseEntity.ok(lista);
+    }
+
     @PostMapping
     public ResponseEntity<Inventario> guardar(@Valid @RequestBody Inventario inventario) {
         Inventario i = inventarioService.save(inventario);

@@ -40,26 +40,10 @@ public class OrdenCompraService {
     public OrdenCompra findById(Long id) {return ordenRepository.findById(id).orElse(null);}
 
     public OrdenCompra save(OrdenCompra o){
-            ClienteDTO cliente = clienteFeign.buscarDTO(o.getClienteId());
-            if(cliente == null) return null;
-            int total = 0;
-
-            if(o.getDetalle() != null && !o.getDetalle().isEmpty()) {
-                for (DetalleOrden d : o.getDetalle()) {
-                    ProductoDTO prod = productoFeign.buscarDTO(d.getProductoId());
-                    if(prod == null) return null;
-
-                    double subtotal = (double) (prod.getPrecio() * d.getCantidad());
-                    d.setSubtotal(subtotal);
-
-                    d.setOrdenId(o);
-
-                    total += (int) subtotal;
-                }
-            }
-            o.setTotal(total);
-            return ordenRepository.save(o);
-        }
+        ClienteDTO cliente = clienteFeign.buscarDTO(o.getClienteId());
+        if(cliente == null) return null;
+        return ordenRepository.save(o);
+    }
 
     public void deleteById(Long id) {
         ordenRepository.deleteById(id);
@@ -78,7 +62,7 @@ public class OrdenCompraService {
 
     public OrdenDTO buscarDTO(Long id){
         OrdenCompra orden = ordenRepository.findById(id).orElse(null);
-        if(orden == null)return null;
+        if(orden == null) return null;
         OrdenDTO dto = mapper.toDTO(orden);
 
         List<DetalleOrden> detalle = detalleRepository.findByOrdenId(orden);
@@ -91,16 +75,18 @@ public class OrdenCompraService {
                 deto.setNombre(prod.getNombre());
             }
             listaDTO.add(deto);
-
         }
 
         dto.setDetalle(listaDTO);
-
         return dto;
-
     }
 
-
+    public OrdenCompra actualizarEstado(Long id ,String estado) {
+        OrdenCompra orden = ordenRepository.findById(id).orElse(null);
+        if(orden == null) return null;
+        orden.setEstado(estado.toUpperCase());
+        return ordenRepository.save(orden);
+    }
 
 
 

@@ -20,7 +20,7 @@ public class DetalleOrden {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "El subtotal no debe estar null")
+    @NotNull(message = "la cantidad no debe estar null")
     @Column(nullable = false)
     private int cantidad;
 

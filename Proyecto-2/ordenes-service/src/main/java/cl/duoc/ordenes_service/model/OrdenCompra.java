@@ -36,9 +36,6 @@ public class OrdenCompra {
     @Column(name = "cliente_id", nullable = false)
     private Long clienteId;
 
-    @OneToMany(mappedBy = "ordenId")
-    private List<DetalleOrden> detalle;
-
     @PrePersist
     protected void onCreate() {
         this.fecha = LocalDateTime.now();
