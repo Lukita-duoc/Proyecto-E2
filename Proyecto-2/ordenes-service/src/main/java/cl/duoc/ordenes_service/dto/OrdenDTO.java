@@ -13,5 +13,5 @@ public class OrdenDTO {
     private String estado;
     private int total;
     private Long clienteId;
-    private List<DetalleOrdenDTO> detalles;
+    private List<DetalleOrdenDTO> detalle;
 }

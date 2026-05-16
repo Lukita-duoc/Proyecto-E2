@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -28,13 +29,15 @@ public class OrdenCompra {
     @Column(nullable = false)
     private String estado;
 
-    @NotNull(message = "El valor no debe ser nulo")
     @Column(nullable = false)
     private int total;
 
     @NotNull(message = "El id no debe ser nulo ")
     @Column(name = "cliente_id", nullable = false)
     private Long clienteId;
+
+    @OneToMany(mappedBy = "ordenId")
+    private List<DetalleOrden> detalle;
 
     @PrePersist
     protected void onCreate() {

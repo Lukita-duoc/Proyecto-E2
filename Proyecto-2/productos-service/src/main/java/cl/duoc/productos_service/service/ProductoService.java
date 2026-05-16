@@ -45,13 +45,15 @@ public class ProductoService {
     public Producto update(Long id, Producto p) {
         Producto producto = productoRepository.findById(id).orElse(null);
         if(producto == null) return null;
+        Marca m = marcaRepository.findById(p.getMarca().getId()).orElse(null);
+        if (m == null) return null;
 
         producto.setNombre(p.getNombre());
         producto.setDescripcion(p.getDescripcion());
         producto.setPrecio(p.getPrecio());
         producto.setStock(p.getStock());
         producto.setCategoria(p.getCategoria());
-
+        producto.setMarca(m);
 
         return productoRepository.save(producto);
     }
@@ -61,5 +63,17 @@ public class ProductoService {
         Producto producto = productoRepository.findById(id).orElse(null);
         if(producto == null) return null;
         return mapper.toDTO(producto);
+    }
+
+    public Producto reducirStock(Long id, int cantidad) {
+        Producto producto = productoRepository.findById(id).orElse(null);
+        String mensaje = "stock insuficiente";
+        if(producto == null) return null;
+        int stockActualizado = producto.getStock() - cantidad;
+        if(stockActualizado < 0) {
+            throw new RuntimeException("Stock insuficiente: " + producto.getNombre()+ " Stock actual: " + producto.getStock());
+        }
+        producto.setStock(stockActualizado);
+        return productoRepository.save(producto);
     }
 }

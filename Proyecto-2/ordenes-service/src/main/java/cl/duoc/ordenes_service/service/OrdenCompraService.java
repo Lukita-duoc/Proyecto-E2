@@ -42,6 +42,22 @@ public class OrdenCompraService {
     public OrdenCompra save(OrdenCompra o){
             ClienteDTO cliente = clienteFeign.buscarDTO(o.getClienteId());
             if(cliente == null) return null;
+            int total = 0;
+
+            if(o.getDetalle() != null && !o.getDetalle().isEmpty()) {
+                for (DetalleOrden d : o.getDetalle()) {
+                    ProductoDTO prod = productoFeign.buscarDTO(d.getProductoId());
+                    if(prod == null) return null;
+
+                    double subtotal = (double) (prod.getPrecio() * d.getCantidad());
+                    d.setSubtotal(subtotal);
+
+                    d.setOrdenId(o);
+
+                    total += (int) subtotal;
+                }
+            }
+            o.setTotal(total);
             return ordenRepository.save(o);
         }
 
@@ -78,7 +94,7 @@ public class OrdenCompraService {
 
         }
 
-        dto.setDetalles(listaDTO);
+        dto.setDetalle(listaDTO);
 
         return dto;
 

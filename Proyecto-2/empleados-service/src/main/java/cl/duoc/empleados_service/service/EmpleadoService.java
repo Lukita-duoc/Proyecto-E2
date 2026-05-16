@@ -45,7 +45,8 @@ public class EmpleadoService {
     public Empleado update(Long id, Empleado empleado){
         Empleado e = empleadoRepository.findById(id).orElse(null);
         if(e == null) return null;
-
+        Sucursal s = sucursalRepository.findById(empleado.getSucursal().getIdSucursal()).orElse(null);
+        if(s == null) return null;
         e.setNombre(empleado.getNombre());
         e.setApellido(empleado.getApellido());
         e.setCorreo(empleado.getCorreo());

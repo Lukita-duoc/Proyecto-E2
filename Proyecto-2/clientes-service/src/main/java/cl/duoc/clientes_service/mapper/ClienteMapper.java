@@ -10,7 +10,7 @@ public class ClienteMapper {
     public ClienteDTO toDTO(Cliente c) {
         if(c == null) return null;
         ClienteDTO dto = new ClienteDTO();
-        dto.setNombreCompleto(c.getNombre()+ c.getApellido());
+        dto.setNombreCompleto(c.getNombre()+ " " +c.getApellido());
         dto.setCorreo(c.getCorreo());
         dto.setNombreEmpresa(c.getEmpresa().getNombreEmpresa());
 

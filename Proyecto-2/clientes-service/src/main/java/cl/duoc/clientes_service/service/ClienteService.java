@@ -64,4 +64,8 @@ public class ClienteService {
         return dto;
     }
 
+    public Cliente findByRut(int rut) {
+        return clienteRepository.findByRut(rut).orElse(null);
+    }
+
 }

@@ -1,9 +1,7 @@
 package cl.duoc.empleados_service.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,7 +23,8 @@ public class Sucursal {
     @Column(nullable = false)
     private String ciudad;
     @NotNull(message = "La capacidad no puede ser nula")
-    @PositiveOrZero
+    @Min(value = 1, message = "La capacidad mínima de una sucursal debe ser de al menos 1 trabajador")
+    @Max(value = 100, message = "una sucursal no puede superar los 100 trabajadores")
     @Column(nullable = false)
     private Integer capacidad;
 }

@@ -55,5 +55,12 @@ public class ClienteController {
         return ResponseEntity.ok(cliente);
     }
 
+    @GetMapping("/rut/{rut}")
+    public ResponseEntity<?> buscarPorRut(@PathVariable int rut) {
+        Cliente c = clienteService.findByRut(rut);
+        if(c == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(c);
+    }
+
 
 }

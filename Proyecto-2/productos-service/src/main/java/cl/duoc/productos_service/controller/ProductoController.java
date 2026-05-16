@@ -38,6 +38,13 @@ public class ProductoController {
         return ResponseEntity.ok(dto);
     }
 
+    @GetMapping("/stock/{id}")
+    public ResponseEntity<?> reducirStock(@PathVariable Long id, @RequestParam int cantidad) {
+        Producto p = productoService.reducirStock(id, cantidad);
+        if(p == null) return new ResponseEntity<>(p, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(p, HttpStatus.CREATED);
+    }
+
     @PostMapping
     public ResponseEntity<?> guardar(@Valid @RequestBody Producto p) {
         Producto producto = productoService.save(p);
