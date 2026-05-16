@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="api-gateway" />
         <module name="eureka-service" />
+        <module name="config-server" />
       </profile>
       <profile name="Annotation profile for proveedores-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -32,6 +33,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
       <module name="clientes-service" options="-parameters" />
+      <module name="config-server" options="-parameters" />
       <module name="empleados-service" options="-parameters" />
       <module name="envios-service" options="-parameters" />
       <module name="eureka-service" options="-parameters" />
