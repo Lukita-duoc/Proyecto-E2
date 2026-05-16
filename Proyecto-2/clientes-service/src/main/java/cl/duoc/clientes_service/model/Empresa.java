@@ -15,7 +15,8 @@ public class Empresa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long empresa_id;
+    @Column(name = "empresa_id", nullable = false)
+    private Long empresaId;
 
     @NotBlank(message = "El nombre no puede estar en blanco")
     @Column(nullable = false, name = "nombre_empresa")

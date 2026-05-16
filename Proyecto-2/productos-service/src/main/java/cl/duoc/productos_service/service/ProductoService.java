@@ -76,4 +76,31 @@ public class ProductoService {
         producto.setStock(stockActualizado);
         return productoRepository.save(producto);
     }
+
+    public List<Producto> findByCategoria(String categoria) {
+        List<Producto> listaCategoria = new ArrayList<>();
+
+        List<Producto> allProduct = productoRepository.findAll();
+
+        for (Producto p : allProduct) {
+            if(p.getCategoria() != null && p.getCategoria().equalsIgnoreCase(categoria)) {
+                listaCategoria.add(p);
+            }
+        }
+
+        return listaCategoria;
+    }
+
+    public List<Producto> findByPrecioBetween(int precioMin, int precioMax) {
+        List<Producto> listaCategoria = new ArrayList<>();
+
+        List<Producto> allProduct = productoRepository.findAll();
+
+        for (Producto p : allProduct) {
+            if(p.getPrecio() != null && p.getPrecio() >= precioMin && p.getPrecio() <= precioMax) {
+                listaCategoria.add(p);
+            }
+        }
+        return listaCategoria;
+    }
 }

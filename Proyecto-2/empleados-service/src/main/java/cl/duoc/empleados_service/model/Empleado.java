@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,9 +22,11 @@ public class Empleado {
     @Column(name = "id_empleado")
     private Long idEmpleado;
     @NotBlank(message = "El nombre no puede estar en blanco")
+    @Size(min = 3, max = 50, message = "El nombre debe tener entre 3 y 50 caracteres")
     @Column(nullable = false)
     private String nombre;
     @NotBlank(message = "El apellido no puede estar en blanco")
+    @Size(min = 3, max = 50, message = "El apellido debe tener entre 3 y 50 caracteres")
     @Column(nullable = false)
     private String apellido;
     @NotBlank(message = "El correo no puede estar en blanco")
@@ -31,6 +34,7 @@ public class Empleado {
     @Column(nullable = false, unique = true)
     private String correo;
     @NotBlank(message = "El cargo no puede estar en blanco")
+    @Size(min = 3, max = 50, message = "El cargo debe tener entre 3 y 50 caracteres")
     @Column(nullable = false)
     private String cargo;
     @NotNull(message = "EL contrato no puede ser nulo")

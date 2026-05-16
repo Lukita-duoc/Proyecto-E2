@@ -1,0 +1,8 @@
+CREATE database bd_clientes;
+CREATE database bd_empleados;
+CREATE database bd_envios;
+CREATE database bd_facturacion;
+CREATE database bd_inventarios;
+CREATE database bd_ordenes;
+CREATE database bd_productos;
+CREATE database bd_proveedores;

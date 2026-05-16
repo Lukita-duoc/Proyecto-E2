@@ -14,7 +14,6 @@ public class FacturaMapper {
         if(dto == null) return null;
 
         dto.setIdFactura(f.getId());
-        dto.setFechaEmision(f.getFechaEmision());
         dto.setMetodoPago(f.getMetodoPago());
         dto.setTotal(f.getTotal());
         dto.setIdCliente(f.getIdCliente());

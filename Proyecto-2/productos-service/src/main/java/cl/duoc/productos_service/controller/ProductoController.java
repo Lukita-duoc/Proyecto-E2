@@ -45,6 +45,18 @@ public class ProductoController {
         return new ResponseEntity<>(p, HttpStatus.CREATED);
     }
 
+    @GetMapping("/categoria/{categoria}")
+    public ResponseEntity<List<?>> filtrarCategoria(@PathVariable String categoria) {
+        List<Producto> productos = productoService.findByCategoria(categoria);
+        return ResponseEntity.ok(productos);
+    }
+
+    @GetMapping("/filtrarPrecio/{min}/{max}")
+    public ResponseEntity<List<?>> precioEntre(@PathVariable int min, @PathVariable int max) {
+        List<Producto> productos = productoService.findByPrecioBetween(min, max);
+        return ResponseEntity.ok(productos);
+    }
+
     @PostMapping
     public ResponseEntity<?> guardar(@Valid @RequestBody Producto p) {
         Producto producto = productoService.save(p);

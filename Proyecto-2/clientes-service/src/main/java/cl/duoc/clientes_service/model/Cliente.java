@@ -18,14 +18,13 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_cliente;
 
-
-
-    @NotNull
+    @NotNull(message = "EL rut no es valido")
     @Positive(message = "El rut no puede ser negativo")
     @Column(nullable = false, unique = true)
-    private int rut;
+    private Integer rut;
 
     @NotBlank(message = "El nombre no puede estar en blanco")
+    @Size(min = 3, max = 30, message = "El nombre debe tener entre 3 y 30 caracteres")
     @Column(nullable = false)
     private String nombre;
 
@@ -39,6 +38,8 @@ public class Cliente {
     private String correo;
 
     @NotBlank(message = "El telefono no puede estar en blanco")
+    @Size(min = 9, max = 10,message = "telefono debe de tener 10 caracteres")
+    @Pattern(regexp = "^[0-9]+$", message = "El campo debe contener solo números")
     @Column(nullable = false)
     private String telefono;
 

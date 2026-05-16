@@ -62,5 +62,10 @@ public class ClienteController {
         return ResponseEntity.ok(c);
     }
 
+    @GetMapping("/empresa/{empresaId}")
+    public ResponseEntity<List<?>> buscarPorEmpresa(@PathVariable Long empresaId) {
+        List<Cliente> listaCliente = clienteService.findByIdempresa(empresaId);
+        return ResponseEntity.ok(listaCliente);
+    }
 
 }

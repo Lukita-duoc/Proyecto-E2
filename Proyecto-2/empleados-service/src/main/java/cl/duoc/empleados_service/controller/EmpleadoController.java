@@ -37,6 +37,12 @@ public class EmpleadoController {
         return ResponseEntity.ok(dto);
     }
 
+    @GetMapping("/sucursal/{idSucursal}")
+    public ResponseEntity<List<?>> buscarPorIdSucursal(@PathVariable Long idSucursal) {
+        List<Empleado> empleados = empleadoService.findByIdSucursal(idSucursal);
+        return ResponseEntity.ok(empleados);
+    }
+
     @PostMapping
     public ResponseEntity<?> guardar(@Valid @RequestBody Empleado empleado) {
         Empleado e = empleadoService.save(empleado);

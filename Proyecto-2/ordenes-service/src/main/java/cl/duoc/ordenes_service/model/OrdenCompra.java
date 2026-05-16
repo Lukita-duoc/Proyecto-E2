@@ -1,8 +1,7 @@
 package cl.duoc.ordenes_service.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,11 +25,18 @@ public class OrdenCompra {
     private LocalDateTime fecha;
 
     @NotBlank (message = "El estado no debe estar vacio")
+    @Size(min = 3, max = 10, message = "El código debe tener entre 3 y 10 carácter")
+    @Pattern(
+            regexp = "^(PENDIENTE|PAGADO|ENVIADO|PROCESADO|CANCELADO)$",
+            message = "El estado no es válido. Solo se permite: PENDIENTE, PAGADO, ENVIADO o CANCELADO"
+    )
     @Column(nullable = false)
     private String estado;
 
+    @NotNull(message = "total no puede ser nulo")
+    @Min(value = 0)
     @Column(nullable = false)
-    private int total;
+    private Integer total;
 
     @NotNull(message = "El id no debe ser nulo ")
     @Column(name = "cliente_id", nullable = false)

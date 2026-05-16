@@ -34,7 +34,7 @@ public class ClienteService {
     }
 
     public Cliente save(Cliente c){
-        Empresa e = empresaRepository.findById(c.getEmpresa().getEmpresa_id()).orElse(null);
+        Empresa e = empresaRepository.findById(c.getEmpresa().getEmpresaId()).orElse(null);
         c.setEmpresa(e);
         return clienteRepository.save(c);
     }
@@ -66,6 +66,20 @@ public class ClienteService {
 
     public Cliente findByRut(int rut) {
         return clienteRepository.findByRut(rut).orElse(null);
+    }
+
+    public List<Cliente> findByIdempresa(Long idEmpresa) {
+        List<Cliente> cliente = new ArrayList<>();
+
+        List<Cliente> allClient = clienteRepository.findAll();
+
+        for (Cliente c : allClient) {
+            if(c.getEmpresa() != null && c.getEmpresa().getEmpresaId().equals(idEmpresa)){
+                cliente.add(c);
+            }
+        }
+
+        return cliente;
     }
 
 }

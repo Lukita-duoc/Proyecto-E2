@@ -68,4 +68,17 @@ public class EmpleadoService {
 
         return listaDTO;
     }
+
+    public List<Empleado> findByIdSucursal(Long idSucursal){
+        List<Empleado> listaSucursal = new ArrayList<>();
+
+        List<Empleado> allempleado = empleadoRepository.findAll();
+
+        for (Empleado e : allempleado) {
+            if(e.getSucursal() != null && e.getSucursal().getIdSucursal().equals(idSucursal)) {
+                listaSucursal.add(e);
+            }
+        }
+        return listaSucursal;
+    }
 }

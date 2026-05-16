@@ -16,7 +16,7 @@ public class Inventario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_inventario", nullable = false)
     private Long idInventario;
-    @NotNull(message = "El stock no puede ser nulo")
+    @NotNull(message = "El stockActual no puede ser nulo")
     @Positive(message = "El stockActual no puede ser negativo")
     @Column(nullable = false)
     private int stockActual;
@@ -25,6 +25,7 @@ public class Inventario {
     @Column(nullable = false)
     private int stockMinimo;
     @NotBlank(message = "La ubicacion no puede estar en blanco")
+    @Size(min = 3, max = 30, message = "la ubicacion debe tener entre 3 y 30 caracteres")
     @Column(nullable = false)
     private String ubicacion;
     @NotNull(message = "El producto_id no puede ser nulo")

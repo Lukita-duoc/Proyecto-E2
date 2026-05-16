@@ -16,10 +16,12 @@ public class Sucursal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_sucursal")
     private Long idSucursal;
-    @NotBlank(message = "El nombre no puede estar blanco")
+    @NotBlank(message = "El nombre de sucursal no puede estar blanco")
+    @Size(min = 3, max = 50, message = "El nombre de sucursal debe tener entre 3 y 50 caracteres")
     @Column(nullable = false)
     private String nombre;
     @NotBlank(message = "La ciudad no puede estar en blanco")
+    @Size(min = 3, max = 50, message = "El nombre de ciudad debe tener entre 3 y 50 caracteres")
     @Column(nullable = false)
     private String ciudad;
     @NotNull(message = "La capacidad no puede ser nula")
