@@ -42,8 +42,11 @@ public class OrdenCompraService {
     public OrdenCompra save(OrdenCompra o){
         ClienteDTO cliente = clienteFeign.buscarDTO(o.getClienteId());
         if(cliente == null) return null;
+        o.setTotal(0);
         return ordenRepository.save(o);
     }
+
+
 
     public void deleteById(Long id) {
         ordenRepository.deleteById(id);
@@ -70,7 +73,7 @@ public class OrdenCompraService {
 
         for (DetalleOrden d : detalle) {
             DetalleOrdenDTO deto = mapper.toDetalleDTO(d);
-            ProductoDTO prod = productoFeign.buscarDTO(d.getProductoId());
+            ProductoDTO prod = productoFeign.buscarId(d.getProductoId());
             if(prod != null) {
                 deto.setNombre(prod.getNombre());
             }

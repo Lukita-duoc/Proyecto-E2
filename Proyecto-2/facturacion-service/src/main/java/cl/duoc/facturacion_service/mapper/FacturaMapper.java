@@ -18,7 +18,7 @@ public class FacturaMapper {
         dto.setTotal(f.getTotal());
         dto.setIdCliente(f.getIdCliente());
         dto.setIdOrden(f.getIdOrden());
-
+        dto.setFechaEmision(f.getFechaEmision());
         dto.setNombresProductos(new ArrayList<>());
 
         return dto;

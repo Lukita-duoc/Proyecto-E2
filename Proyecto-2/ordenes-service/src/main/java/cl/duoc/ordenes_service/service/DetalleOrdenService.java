@@ -18,6 +18,9 @@ public class    DetalleOrdenService {
     private DetalleOrdenRepository detalleOrdenRepository;
 
     @Autowired
+    private OrdenCompraRepository ordenCompraRepository;
+
+    @Autowired
     private ProductoFeign productoFeign;
 
 
@@ -28,13 +31,35 @@ public class    DetalleOrdenService {
     public DetalleOrden findById(Long id) {
         return detalleOrdenRepository.findById(id).orElse(null);
     }
-
+    /*
     public DetalleOrden save(DetalleOrden d) {
         ProductoDTO p = productoFeign.buscarDTO(d.getProductoId());
         if(p == null) return null;
         return detalleOrdenRepository.save(d);
     }
+    */
 
+    public DetalleOrden guardarDetalle(DetalleOrden detalle) {
+        ProductoDTO producto = productoFeign.buscarId(detalle.getProductoId());
+
+        if(producto == null) return null;
+
+        int subTotalCalculado = detalle.getCantidad() * producto.getPrecio();
+        detalle.setSubtotal(subTotalCalculado);
+
+        OrdenCompra orden = ordenCompraRepository.findById(detalle.getOrdenId().getId()).orElse(null);
+
+        if(orden == null) return null;
+
+        if(orden.getTotal() == null){
+            orden.setTotal(0);
+        }
+        orden.setTotal(orden.getTotal() + subTotalCalculado);
+
+        ordenCompraRepository.save(orden);
+        return detalleOrdenRepository.save(detalle);
+
+    }
     public void deleteById(Long id) {
         detalleOrdenRepository.deleteById(id);
     }

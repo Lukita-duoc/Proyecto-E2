@@ -32,7 +32,7 @@ public class DetalleOrdenController {
 
     @PostMapping
     public ResponseEntity<DetalleOrden> guardar(@Valid @RequestBody DetalleOrden detalle) {
-        DetalleOrden d = detalleOrdenService.save(detalle);
+        DetalleOrden d = detalleOrdenService.guardarDetalle(detalle);
         if(d == null) return new ResponseEntity<>(d, HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(d, HttpStatus.CREATED);
     }
