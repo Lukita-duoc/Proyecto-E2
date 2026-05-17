@@ -1,3 +1,6 @@
+Integrantes:
+Lucas Ortiz, Cristopher Rojas
+
 # SERVICIO DE LOGISTICA
 
 El proyecto fue diseñado con fines académicos para implementar:
@@ -86,5 +89,3 @@ GET /api/v1/inventario/buscar-producto/{productoId}/{sucursalId}
 GET /api/v1/inventario/reporte-stock
 GET /api/v1/facturas/cliente/{idCliente}
 
-
-Lucas Ortiz, Cristopher Rojas
