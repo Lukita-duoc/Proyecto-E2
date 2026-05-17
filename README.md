@@ -85,3 +85,6 @@ GET /api/v1/proveedores/pais/{pais}
 GET /api/v1/inventario/buscar-producto/{productoId}/{sucursalId}
 GET /api/v1/inventario/reporte-stock
 GET /api/v1/facturas/cliente/{idCliente}
+
+
+Lucas Ortiz, Cristopher Rojas
