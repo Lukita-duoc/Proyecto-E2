@@ -11,6 +11,7 @@ import cl.duoc.inventario_service.repository.InventarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -77,11 +78,22 @@ public class InventarioService {
         return dto;
     }
 
-    public Inventario findByProductoSucursal(Long productoId, Long SucursalId) {
-        return inventarioRepository.findByProductoIdAndSucursalId(productoId, SucursalId).orElse(null);
+    //Lista por el id de producto y id de sucursal
+    public List<Inventario> findByProductoSucursal(Long productoId, Long SucursalId) {
+        return inventarioRepository.findByProductoIdAndSucursalId(productoId, SucursalId);
     }
 
-    public List<Inventario> obtenerStock(){
-        return inventarioRepository.findStockCritico();
+    //Lista los articulos con menos o igual del stock minimo permitido
+    public List<Inventario> obtenerStock() {
+        List<Inventario> restaStock = new ArrayList<>();
+
+        List<Inventario> allInventario = inventarioRepository.findAll();
+
+        for (Inventario i : allInventario) {
+            if(i.getStockActual() != null && i.getStockMinimo() != null && i.getStockActual() <= i.getStockMinimo()) {
+                restaStock.add(i);
+            }
+        }
+        return restaStock;
     }
 }

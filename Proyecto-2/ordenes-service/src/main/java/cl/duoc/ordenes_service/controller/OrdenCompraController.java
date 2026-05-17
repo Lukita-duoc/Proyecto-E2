@@ -57,11 +57,4 @@ public class OrdenCompraController {
         if(o == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(o);
     }
-
-    @GetMapping("/estado/{id}") //consulta: http://localhost:8080/api/v1/ordenes/estado/1?estado=PAGADA
-    public ResponseEntity<?> actualizarEstado(@PathVariable Long id, @RequestParam  String estado) {
-        OrdenCompra o = ordenCompraService.actualizarEstado(id, estado);
-        if (o == null) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(o);
-    }
 }

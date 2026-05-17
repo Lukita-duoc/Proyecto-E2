@@ -8,5 +8,4 @@ import java.util.Optional;
 
 @Repository
 public interface EnvioRepository extends JpaRepository<Envio, Long> {
-    Optional<Envio> findByOrdenId(Long ordenId);
 }

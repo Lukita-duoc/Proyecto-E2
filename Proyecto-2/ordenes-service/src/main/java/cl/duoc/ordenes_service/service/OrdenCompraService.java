@@ -63,9 +63,9 @@ public class OrdenCompraService {
         return ordenRepository.save(ordenCompra);
     }
 
-    public OrdenDTO buscarDTO(Long id){
+    public OrdenDTO buscarDTO(Long id) {
         OrdenCompra orden = ordenRepository.findById(id).orElse(null);
-        if(orden == null) return null;
+        if (orden == null) return null;
         OrdenDTO dto = mapper.toDTO(orden);
 
         List<DetalleOrden> detalle = detalleRepository.findByOrdenId(orden);
@@ -74,7 +74,7 @@ public class OrdenCompraService {
         for (DetalleOrden d : detalle) {
             DetalleOrdenDTO deto = mapper.toDetalleDTO(d);
             ProductoDTO prod = productoFeign.buscarId(d.getProductoId());
-            if(prod != null) {
+            if (prod != null) {
                 deto.setNombre(prod.getNombre());
             }
             listaDTO.add(deto);
@@ -83,15 +83,5 @@ public class OrdenCompraService {
         dto.setDetalle(listaDTO);
         return dto;
     }
-
-    public OrdenCompra actualizarEstado(Long id ,String estado) {
-        OrdenCompra orden = ordenRepository.findById(id).orElse(null);
-        if(orden == null) return null;
-        orden.setEstado(estado.toUpperCase());
-        return ordenRepository.save(orden);
-    }
-
-
-
 
 }

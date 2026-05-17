@@ -17,13 +17,13 @@ public class Inventario {
     @Column(name = "id_inventario", nullable = false)
     private Long idInventario;
     @NotNull(message = "El stockActual no puede ser nulo")
-    @Positive(message = "El stockActual no puede ser negativo")
+    @PositiveOrZero(message = "El stockActual no puede ser menor a 0")
     @Column(nullable = false)
-    private int stockActual;
+    private Integer stockActual;
     @Min(1)
     @NotNull(message = "El stock minimo no puede ser nulo")
     @Column(nullable = false)
-    private int stockMinimo;
+    private Integer stockMinimo;
     @NotBlank(message = "La ubicacion no puede estar en blanco")
     @Size(min = 3, max = 30, message = "la ubicacion debe tener entre 3 y 30 caracteres")
     @Column(nullable = false)

@@ -69,6 +69,7 @@ public class EmpleadoService {
         return listaDTO;
     }
 
+    //listar por id de sucursal
     public List<Empleado> findByIdSucursal(Long idSucursal){
         List<Empleado> listaSucursal = new ArrayList<>();
 

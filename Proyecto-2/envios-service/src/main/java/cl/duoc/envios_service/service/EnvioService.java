@@ -79,7 +79,4 @@ public class EnvioService {
         return dto;
     }
 
-    public Envio findByOrdenId(Long ordenId) {
-        return envioRepository.findByOrdenId(ordenId).orElse(null);
-    }
 }

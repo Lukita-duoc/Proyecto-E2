@@ -59,6 +59,7 @@ public class ProveedorService {
         return listaDTO;
     }
 
+    //Listar por pais del proveedor
     public List<Proveedor> findByPais(String pais) {
         return proveedorRepository.findByPais(pais);
     }

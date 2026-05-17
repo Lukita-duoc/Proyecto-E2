@@ -77,6 +77,7 @@ public class ProductoService {
         return productoRepository.save(producto);
     }
 
+    //Listar por categoria
     public List<Producto> findByCategoria(String categoria) {
         List<Producto> listaCategoria = new ArrayList<>();
 
@@ -91,6 +92,7 @@ public class ProductoService {
         return listaCategoria;
     }
 
+    //Filtro de precio
     public List<Producto> findByPrecioBetween(int precioMin, int precioMax) {
         List<Producto> listaCategoria = new ArrayList<>();
 

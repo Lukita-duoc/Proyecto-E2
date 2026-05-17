@@ -64,11 +64,14 @@ public class ClienteService {
         return dto;
     }
 
+    //Encontrar al cliente por el rut
     public Cliente findByRut(int rut) {
         return clienteRepository.findByRut(rut).orElse(null);
     }
 
+    //Listar por id de empresa
     public List<Cliente> findByIdempresa(Long idEmpresa) {
+
         List<Cliente> cliente = new ArrayList<>();
 
         List<Cliente> allClient = clienteRepository.findAll();

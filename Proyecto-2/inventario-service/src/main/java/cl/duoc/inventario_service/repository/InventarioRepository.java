@@ -10,8 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface InventarioRepository extends JpaRepository<Inventario, Long> {
-    Optional<Inventario> findByProductoIdAndSucursalId(Long productoId, Long sucursalId);
+    List<Inventario> findByProductoIdAndSucursalId(Long productoId, Long sucursalId);
 
-    @Query("SELECT i FROM Inventario i WHERE i.stockActual <= i.stockMinimo")
-    List<Inventario> findStockCritico();
 }

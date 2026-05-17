@@ -24,20 +24,5 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<ErrorResponse> errorBaseDeDatos(DataIntegrityViolationException ex) {
 
-        String error = ex.getMostSpecificCause().getMessage();
-        String mensaje = "Error de persistencia: Error de restriccion en la base de datos";
-        if(error.contains("Duplicate entry")) {
-            mensaje = "No se puede guardar: El RUT o el Correo ingresado ya existen en el sistema.";
-        }
-        ErrorResponse response = new ErrorResponse(
-                String.valueOf(HttpStatus.CONFLICT.value()),
-                "Registro Duplicado",
-                mensaje,
-                LocalDateTime.now());
-
-        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
-    }
 }

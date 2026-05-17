@@ -38,13 +38,6 @@ public class EnvioController {
         return ResponseEntity.ok(dto);
     }
 
-    @GetMapping("/orden/{ordenId}")
-    public ResponseEntity<?> buscarPorIdOrden(@PathVariable Long ordenId) {
-        Envio e = envioService.findByOrdenId(ordenId);
-        if (e == null) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(e);
-    }
-
     @PostMapping
     public ResponseEntity<?> guardar(@Valid @RequestBody Envio envio) {
         Envio e = envioService.save(envio);

@@ -27,7 +27,7 @@ public class    Factura {
     @Size(min = 3, max = 15, message = "metodo de pago tiene que tener entre 3 y 15 caracteres")
     @Pattern(
             regexp = "^(TARJETA DE DEBITO|EFECTIVO|TARJETA DE CREDITO|TRANSFERENCIA|)$",
-            message = "El metodo de pago no es válido. Solo se permite: PENDIENTE, PAGADO, ENVIADO o CANCELADO"
+            message = "El metodo de pago no es válido. Solo se permite: TARJETA DE DEBITO, EFECTIVO, TARJETA DE CREDITO o TRANSFERENCIA"
     )
     @Column(nullable = false)
     private String metodoPago;

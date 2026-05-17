@@ -72,6 +72,7 @@ public class FacturaService {
         return dto;
     }
 
+    //Lista todas las facturas del cliente
     public List<Factura> findByIdCliente(Long idCliente) {
         return facturaRepository.findByIdCliente(idCliente);
     }
