@@ -16,7 +16,6 @@ public class EnvioMapper {
         dto.setEstadoEnvio(e.getEstadoEnvio());
         dto.setFechaSalida(e.getFechaSalida());
         dto.setOrdenId(e.getOrdenId());
-
         return dto;
     }
 }

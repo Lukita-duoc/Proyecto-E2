@@ -67,14 +67,10 @@ public class EnvioService {
         EnvioDTO dto = mapper.toDTO(envio);
         OrdenDTO orden = ordenFeign.buscarPorIdDTO(envio.getOrdenId());
 
-        if(orden != null ) {
-            ClienteDTO cliente = clienteFeign.buscarDTO(orden.getClienteId());
-
-            if(cliente != null) {
-                dto.setCorreoCliente(cliente.getCorreo());
-                dto.setNombreCliente(cliente.getNombreCompleto());
-                dto.setTotal(orden.getTotal());
-            }
+        if(orden != null) {
+            dto.setTotal(orden.getTotal());
+            dto.setNombreCliente(orden.getNombreCompleto());
+            dto.setCorreoCliente(orden.getCorreo());
         }
 
         return dto;
