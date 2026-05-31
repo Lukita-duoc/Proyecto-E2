@@ -8,11 +8,6 @@ import java.util.List;
 
 @Data
 public class OrdenesDTO {
-    private Long id;
-    private LocalDateTime fecha;
-    private String estado;
     private int total;
-    private Long clienteId;
-
     private List<DetalleOrdenDTO> detalle;
 }

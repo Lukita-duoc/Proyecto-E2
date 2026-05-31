@@ -12,6 +12,7 @@ public class OrdenDTO {
     private LocalDateTime fecha;
     private String estado;
     private int total;
-    private Long clienteId;
+    private String nombreCompleto;
+    private String correo;
     private List<DetalleOrdenDTO> detalle;
 }

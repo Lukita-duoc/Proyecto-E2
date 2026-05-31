@@ -60,6 +60,11 @@ public class FacturaService {
         FacturaDTO dto = mapper.toDTO(factura);
 
         OrdenesDTO orden = ordenFeign.buscarDTO(factura.getIdOrden());
+        ClienteDTO cliente = clienteFeign.listaDTO(factura.getIdCliente());
+        if (cliente != null) {
+            dto.setNombreCompleto(cliente.getNombreCompleto());
+            dto.setCorreo(cliente.getCorreo());
+        }
 
         if(orden != null && orden.getDetalle() != null) {
             List<String> listaNombre = new ArrayList<>();

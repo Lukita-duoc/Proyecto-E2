@@ -71,6 +71,12 @@ public class OrdenCompraService {
         List<DetalleOrden> detalle = detalleRepository.findByOrdenId(orden);
         List<DetalleOrdenDTO> listaDTO = new ArrayList<>();
 
+        ClienteDTO cliente = clienteFeign.buscarDTO(orden.getClienteId());
+        if(cliente != null) {
+            dto.setNombreCompleto(cliente.getNombreCompleto());
+            dto.setCorreo(cliente.getCorreo());
+        }
+
         for (DetalleOrden d : detalle) {
             DetalleOrdenDTO deto = mapper.toDetalleDTO(d);
             ProductoDTO prod = productoFeign.buscarId(d.getProductoId());

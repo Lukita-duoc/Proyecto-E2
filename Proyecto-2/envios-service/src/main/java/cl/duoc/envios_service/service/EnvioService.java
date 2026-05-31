@@ -73,6 +73,7 @@ public class EnvioService {
             if(cliente != null) {
                 dto.setCorreoCliente(cliente.getCorreo());
                 dto.setNombreCliente(cliente.getNombreCompleto());
+                dto.setTotal(orden.getTotal());
             }
         }
 

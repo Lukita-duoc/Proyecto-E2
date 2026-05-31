@@ -13,14 +13,12 @@ public class FacturaMapper {
         FacturaDTO dto = new FacturaDTO();
         if(dto == null) return null;
 
-        dto.setIdFactura(f.getId());
         dto.setMetodoPago(f.getMetodoPago());
         dto.setTotal(f.getTotal());
-        dto.setIdCliente(f.getIdCliente());
-        dto.setIdOrden(f.getIdOrden());
+        //dto.setIdCliente(f.getIdCliente());
+        //dto.setIdOrden(f.getIdOrden());
         dto.setFechaEmision(f.getFechaEmision());
         dto.setNombresProductos(new ArrayList<>());
-
         return dto;
     }
 }

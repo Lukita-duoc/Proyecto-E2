@@ -14,5 +14,6 @@ public class EnvioDTO {
     private Long ordenId;
     private String nombreCliente;
     private String correoCliente;
+    private int total;
 
 }

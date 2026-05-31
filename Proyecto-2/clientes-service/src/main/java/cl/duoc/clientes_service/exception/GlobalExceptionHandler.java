@@ -1,6 +1,5 @@
 package cl.duoc.clientes_service.exception;
 
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -21,6 +20,17 @@ public class GlobalExceptionHandler {
                         "Validacion fallida",
                         errores.toString(),
                         LocalDateTime.now());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CorreoDuplicadoException.class)
+    public ResponseEntity<ErrorResponse> errorDeCorreoDuplicado(CorreoDuplicadoException ex) {
+        ErrorResponse response = new ErrorResponse(
+                String.valueOf(HttpStatus.BAD_REQUEST.value()),
+                "Registro de Correo Fallido",
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 

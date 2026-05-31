@@ -20,7 +20,6 @@ public class OrdenMapper {
         dto.setFecha(orden.getFecha());
         dto.setEstado(orden.getEstado());
         dto.setTotal(orden.getTotal());
-        dto.setClienteId(orden.getClienteId());
         return dto;
     }
 

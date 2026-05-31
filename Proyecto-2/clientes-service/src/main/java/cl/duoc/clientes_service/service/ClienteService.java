@@ -1,6 +1,7 @@
 package cl.duoc.clientes_service.service;
 
 import cl.duoc.clientes_service.dto.ClienteDTO;
+import cl.duoc.clientes_service.exception.CorreoDuplicadoException;
 import cl.duoc.clientes_service.mapper.ClienteMapper;
 import cl.duoc.clientes_service.model.Cliente;
 import cl.duoc.clientes_service.model.Empresa;
@@ -34,6 +35,9 @@ public class ClienteService {
     }
 
     public Cliente save(Cliente c){
+        if (clienteRepository.countByCorreo(c.getCorreo()) > 0) {
+            throw new CorreoDuplicadoException("El correo '" + c.getCorreo() + "' ya está registrado.");
+        }
         Empresa e = empresaRepository.findById(c.getEmpresa().getEmpresaId()).orElse(null);
         c.setEmpresa(e);
         return clienteRepository.save(c);
@@ -46,7 +50,9 @@ public class ClienteService {
     public Cliente update(Cliente c, Long id) {
         Cliente actualizar = clienteRepository.findById(id).orElse(null);
         if(actualizar == null) return null;
-
+        if (clienteRepository.countByCorreo(c.getCorreo()) > 0) {
+            throw new CorreoDuplicadoException("El correo '" + c.getCorreo() + "' ya está registrado.");
+        }
         actualizar.setRut(c.getRut());
         actualizar.setNombre(c.getNombre());
         actualizar.setApellido(c.getApellido());
