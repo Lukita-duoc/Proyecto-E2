@@ -2,5 +2,29 @@
   <profile version="1.0">
     <option name="myName" value="Project Default" />
     <inspection_tool class="SqlNoDataSourceInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="VulnerableLibrariesLocal" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="isIgnoringEnabled" value="true" />
+      <option name="ignoredModules">
+        <list>
+          <option value="facturacion-service" />
+          <option value="facturacion-service" />
+          <option value="facturacion-service" />
+        </list>
+      </option>
+      <option name="ignoredPackages">
+        <list>
+          <option value="commons-fileupload:commons-fileupload:1.5" />
+          <option value="org.bouncycastle:bcprov-jdk18on:1.81" />
+          <option value="org.apache.httpcomponents:httpclient:4.5.3" />
+        </list>
+      </option>
+      <option name="ignoredReasons">
+        <list>
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+        </list>
+      </option>
+    </inspection_tool>
   </profile>
 </component>
