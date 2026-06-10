@@ -16,7 +16,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 				version = "1.0.1",
 				description = "Documentacion de API de facturacion con endpoints creados"
 		)
-) // Doc: http://localhost:8080/facturacion-service/swagger-ui/index.html
+) // Doc: http://localhost:50858/swagger-ui/index.html
 public class FacturacionServiceApplication {
 
 	public static void main(String[] args) {
