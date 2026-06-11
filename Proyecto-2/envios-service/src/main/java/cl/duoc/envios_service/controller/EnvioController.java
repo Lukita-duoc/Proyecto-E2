@@ -48,7 +48,7 @@ public class EnvioController {
     )
     @ApiResponse(responseCode = "200",
             description = "Envío encontrado",
-            content = @Content(schema = @Schema(implementation = Produces.class)))
+            content = @Content(schema = @Schema(implementation = EnvioDTO.class)))
     @ApiResponse(responseCode = "404",
         description = "Envío no encontrado",
         content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
@@ -65,7 +65,7 @@ public class EnvioController {
     )
     @ApiResponse(responseCode = "200",
             description = "Detalle de envío encontrado",
-            content = @Content(schema = @Schema(implementation = Produces.class)))
+            content = @Content(schema = @Schema(implementation = EnvioDTO.class)))
     @ApiResponse(responseCode = "404",
         description = "Detalle de envío no encontrado",
         content = @Content(schema = @Schema(implementation = ErrorResponse.class ) ))
@@ -96,7 +96,7 @@ public class EnvioController {
             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @ApiResponse(responseCode = "200",
             description = "Envío actualizado correctamente",
-            content = @Content(schema = @Schema(implementation = Envio.class)))
+            content = @Content(schema = @Schema(implementation = EnvioDTO.class)))
     @PutMapping("/{id}")
     public ResponseEntity<Envio> actualizar(@PathVariable Long id, @Valid @RequestBody Envio envio) {
         Envio actualizado = envioService.update(id, envio);
