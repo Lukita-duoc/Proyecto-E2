@@ -1,0 +1,22 @@
+# Nombre de la aplicación y puerto
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config-microservicios/
+  # Configuración de Swagger
+  swagger-ui:
+    path: /swagger-ui.html
+
+server:
+  port: 8888
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}

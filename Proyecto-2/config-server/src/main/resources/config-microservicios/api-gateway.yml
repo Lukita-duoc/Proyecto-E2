@@ -1,0 +1,95 @@
+server:
+  port: 8080
+
+# Configuracion de EUREKA
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+# Configuración de Spring Cloud Gateway
+spring:
+  cloud:
+    gateway:
+      routes:
+        # Ruta para el microservicio de CLIENTES
+        - id: clientes
+          uri: lb://clientes-service
+          predicates:
+            - Path=/api/v1/clientes/**
+
+        # Ruta para el microservicio de EMPRESAS
+        - id: empresas
+          uri: lb://clientes-service
+          predicates:
+            - Path=/api/v1/empresas/**
+
+        # Ruta para el microservicio de MARCAS
+        - id: marcas
+          uri: lb://productos-service
+          predicates:
+            - Path=/api/v1/marcas/**
+
+        # Ruta para el microservicio de PRODUCTOS
+        - id: productos
+          uri: lb://productos-service
+          predicates:
+            - Path=/api/v1/productos/**
+
+        # Ruta para el microservicio de SUCURSALES
+        - id: sucursales
+          uri: lb://empleados-service
+          predicates:
+            - Path=/api/v1/sucursales/**
+
+        # Ruta para el microservicio de EMPLEADOS
+        - id: empleados
+          uri: lb://empleados-service
+          predicates:
+            - Path=/api/v1/empleados/**
+
+        # Ruta para el microservicio de INVENTARIOS
+        - id: inventarios
+          uri: lb://inventario-service
+          predicates:
+            - Path=/api/v1/inventario/**
+
+        # Ruta para el microservicio de PROVEEDOR
+        - id: proveedores
+          uri: lb://proveedores-service
+          predicates:
+            - Path=/api/v1/proveedores/**
+
+        # Ruta para el microservicio de CONTACTO-PROVEEDOR
+        - id: contacto_proveedores
+          uri: lb://proveedores-service
+          predicates:
+            - Path=/api/v1/contactoproveedores/**
+
+        # Ruta para el microservicio de ORDENES
+        - id: orden_compra
+          uri: lb://ordenes-service
+          predicates:
+            - Path=/api/v1/ordenes/**
+
+        # Ruta para el microservicio de DETALLES-ORDENES
+        - id: detalle_orden
+          uri: lb://ordenes-service
+          predicates:
+            - Path=/api/v1/detalles/**
+
+        # Ruta para el microservicio de FACTURAS
+        - id: facturas
+          uri: lb://facturacion-service
+          predicates:
+            - Path=/api/v1/facturas/**
+
+        # Ruta para el microservicio de ENVIOS
+        - id: envios
+          uri: lb://envios-service
+          predicates:
+            - Path=/api/v1/envios/**

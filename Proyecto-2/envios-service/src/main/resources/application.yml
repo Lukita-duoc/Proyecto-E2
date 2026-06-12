@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: envios-service
+  config:
+    import: optional:configserver:http://localhost:8888
+  # Configuración local de Swagger
+  swagger-ui:
+    path: /swagger-ui.html
