@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:/data/config-microservicios/
+  swagger-ui:
+    path: /swagger-ui.html
+
+server:
+  port: 8888

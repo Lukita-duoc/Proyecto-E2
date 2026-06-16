@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: api-gateway
+  config:
+    import: "${SPRING_CONFIG_IMPORT:optional:configserver:http://localhost:8888}"
+    fail-fast: true
+    max-attempts: 20
+    time-interval: 3000
+  main:
+    web-application-type: reactive
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.config: DEBUG
+    org.springframework.web.reactive: DEBUG

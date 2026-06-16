@@ -15,13 +15,6 @@ public class ApiGatewayApplication {
 		SpringApplication.run(ApiGatewayApplication.class, args);
 	}
 
-	@Bean
-	public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
-		return builder.routes()
-				.route("envios_nuclear", r -> r.path("/api/v1/envios/**")
-						.uri("lb://envios-service"))
-				.build();
-	}
 }
 
 

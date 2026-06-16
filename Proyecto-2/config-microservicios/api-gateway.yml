@@ -1,0 +1,80 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://eureka:8761/eureka/}
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: clientes
+          uri: lb://clientes-service
+          predicates:
+            - Path=/api/v1/clientes/**
+
+        - id: empresas
+          uri: lb://clientes-service
+          predicates:
+            - Path=/api/v1/empresas/**
+
+        - id: marcas
+          uri: lb://productos-service
+          predicates:
+            - Path=/api/v1/marcas/**
+
+        - id: productos
+          uri: lb://productos-service
+          predicates:
+            - Path=/api/v1/productos/**
+
+        - id: sucursales
+          uri: lb://empleados-service
+          predicates:
+            - Path=/api/v1/sucursales/**
+
+        - id: empleados
+          uri: lb://empleados-service
+          predicates:
+            - Path=/api/v1/empleados/**
+
+        - id: inventarios
+          uri: lb://inventario-service
+          predicates:
+            - Path=/api/v1/inventarios/**
+
+        - id: proveedores
+          uri: lb://proveedores-service
+          predicates:
+            - Path=/api/v1/proveedores/**
+
+        - id: contacto_proveedores
+          uri: lb://proveedores-service
+          predicates:
+            - Path=/api/v1/contactoproveedores/**
+
+        - id: orden_compra
+          uri: lb://ordenes-service
+          predicates:
+            - Path=/api/v1/ordenes/**
+
+        - id: detalle_orden
+          uri: lb://ordenes-service
+          predicates:
+            - Path=/api/v1/detalles/**
+
+        - id: facturas
+          uri: lb://facturacion-service
+          predicates:
+            - Path=/api/v1/facturas/**
+
+        - id: envios
+          uri: lb://envios-service
+          predicates:
+            - Path=/api/v1/envios/**

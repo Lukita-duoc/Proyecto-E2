@@ -1,0 +1,182 @@
+services:
+
+  mysql-db:
+    restart: always
+    image: mysql:8.0
+    container_name: mysql_database
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./init-db:/docker-entrypoint-initdb.d
+      - mysql_data:/var/lib/mysql
+
+  eureka:
+    restart: always
+    build:
+      context: ./eureka-service
+      dockerfile: Dockerfile
+    container_name: eureka-service
+    ports:
+      - "8761:8761"
+
+  config-server:
+    restart: always
+    build:
+      context: ./config-server
+      dockerfile: Dockerfile
+    container_name: config-server
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./config-microservicios:/data/config-microservicios
+
+  clientes-service:
+    restart: always
+    build:
+      context: ./clientes-service
+      dockerfile: Dockerfile
+    container_name: clientes-service
+    depends_on:
+      config-server:
+        condition: service_started
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8888
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bd_clientes
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  empleados-service:
+    restart: always
+    build:
+      context: ./empleados-service
+      dockerfile: Dockerfile
+    container_name: empleados-service
+    depends_on:
+      config-server:
+        condition: service_started
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8888
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bd_empleados
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  productos-service:
+    restart: always
+    build:
+      context: ./productos-service
+      dockerfile: Dockerfile
+    container_name: productos-service
+    depends_on:
+      config-server:
+        condition: service_started
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8888
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bd_productos
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  proveedores-service:
+    restart: always
+    build:
+      context: ./proveedores-service
+      dockerfile: Dockerfile
+    container_name: proveedores-service
+    depends_on:
+      config-server:
+        condition: service_started
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8888
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bd_proveedores
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  inventario-service:
+    restart: always
+    build:
+      context: ./inventario-service
+      dockerfile: Dockerfile
+    container_name: inventario-service
+    depends_on:
+      config-server:
+        condition: service_started
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8888
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bd_inventarios
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  ordenes-service:
+    restart: always
+    build:
+      context: ./ordenes-service
+      dockerfile: Dockerfile
+    container_name: ordenes-service
+    depends_on:
+      config-server:
+        condition: service_started
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8888
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bd_ordenes
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  facturacion-service:
+    restart: always
+    build:
+      context: ./facturacion-service
+      dockerfile: Dockerfile
+    container_name: facturacion-service
+    depends_on:
+      config-server:
+        condition: service_started
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8888
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bd_facturacion
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  envios-service:
+    restart: always
+    build:
+      context: ./envios-service
+      dockerfile: Dockerfile
+    container_name: envios-service
+    depends_on:
+      config-server:
+        condition: service_started
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8888
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bd_envios
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  api-gateway:
+    restart: always
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    container_name: api-gateway
+    depends_on:
+      - config-server
+    ports:
+      - "8080:8080"
+    command: sh -c "sleep 25 && java -jar /app/app.jar"
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka/
+      SPRING_APPLICATION_NAME: api-gateway
+      SPRING_CONFIG_IMPORT: configserver:http://config-server:8888
+
+volumes:
+  mysql_data:
