@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -39,6 +40,7 @@ public class EmpleadosControllerTest {
     private com.fasterxml.jackson.databind.ObjectMapper objectMapper;
 
     private Empleado empleadoMock;
+    private EmpleadoDTO empleadoDTOmock;
     private Empleado empleadoMock2;
     private Sucursal sucursalmock;
 
@@ -68,18 +70,23 @@ public class EmpleadosControllerTest {
         empleadoMock2.setFechaContrato(LocalDate.of(2026, 6, 18));
         empleadoMock2.setSucursal(sucursalmock);
 
+        empleadoDTOmock = new EmpleadoDTO();
+        empleadoDTOmock.setCorreo("tander.mejias@hola.cl");
+        empleadoDTOmock.setCargo("Empleado");
+
+
     }
 
     @Test
     @DisplayName("GET / listar - Debe retornar 200 OK con la lista de Empleados")
     void testListar() throws Exception {
-        Mockito.when(empleadoService.findAll()).thenReturn(List.of(new Empleado(), new Empleado()));
+        Mockito.when(empleadoService.findAll()).thenReturn(List.of(empleadoMock));
 
         mockMvc.perform(get("/api/v1/empleados")
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(1))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].nombre").value("Ignacio"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].apellido").value("Battistoni"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].cargo").value("Jefe"));
     }
 
@@ -87,13 +94,13 @@ public class EmpleadosControllerTest {
     @Test
     @DisplayName("GET /{id} - Debe retornar 200 OK si el empleado existe")
     void testBuscarId() throws Exception {
-        Mockito.when(empleadoService.findAll()).thenReturn(List.of(empleadoMock));
+        Mockito.when(empleadoService.findById(1L)).thenReturn(empleadoMock);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/empleados/1")
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(1))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].nombre").value("Ignacio Battistoni"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.nombre").value("Ignacio"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.apellido").value("Battistoni"));
     }
 
     @Test
@@ -108,12 +115,56 @@ public class EmpleadosControllerTest {
     @Test
     @DisplayName("GET /listaDetallada - Debe retornar una lista DTO detallada")
     void testListaDetallada() throws Exception {
-        Mockito.when(empleadoService.listaDetallada()).thenReturn(List.of(new EmpleadoDTO(), new EmpleadoDTO()));
+        Mockito.when(empleadoService.listaDetallada()).thenReturn(List.of(empleadoDTOmock));
 
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/empleados/listaDetallada")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].cargo").value("Empleado"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].correo").value("tander.mejias@hola.cl"));
+    }
+
+    @Test
+    @DisplayName("GET /sucursal/{id} - debe retornar 200 OK con la lista por sucursañ")
+    public void testBuscarSucursalID() throws Exception {
+        Mockito.when(empleadoService.findByIdSucursal(1L)).thenReturn(Collections.singletonList(new Empleado()));
+
+        mockMvc.perform(get("/api/v1/empleados/sucursal/1")).andExpect(status().isOk());
 
     }
 
+    @Test
+    @DisplayName("POST - / Debe retornar 201 CREATED al guardar")
+    void testGuardar() throws  Exception{
+        Mockito.when(empleadoService.save(Mockito.any(Empleado.class))).thenReturn(empleadoMock);
 
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/empleados")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(empleadoMock)))
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.nombre").value("Ignacio"));
+    }
+
+    @Test
+    @DisplayName("DELETE /{id} - Debe borrar por ID")
+    void testBorrar() throws Exception{
+        Mockito.doNothing().when(empleadoService).deleteById(10L);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/empleados/{id}", 10L))
+                .andExpect(MockMvcResultMatchers.status().isNoContent());
+    }
+
+    @Test
+    @DisplayName("PUT /api/v1/empleados/{id} -> Debe retornar 200 OK y el empleado modificado")
+    void testActualizar() throws Exception {
+        Mockito.when(empleadoService.update(Mockito.eq(10L), Mockito.any(Empleado.class))).thenReturn(empleadoMock);
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/empleados/{id}", 10L)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(empleadoMock)))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(10L));
+    }
 
 
 }
