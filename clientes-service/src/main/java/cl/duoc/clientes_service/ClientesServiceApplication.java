@@ -19,7 +19,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 						email = "luc.ortizr@duocuc.cl"
 				)
 		)
-) // Doc: http://localhost:50858/swagger-ui/index.html
+) // Doc: http/localhost:8080/swagger-ui.html
 public class ClientesServiceApplication {
 
 	public static void main(String[] args) {

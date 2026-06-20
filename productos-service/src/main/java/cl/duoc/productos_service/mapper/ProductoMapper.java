@@ -10,12 +10,14 @@ public class ProductoMapper {
     public ProductoDTO toDTO(Producto p) {
         if(p == null) return null;
         ProductoDTO dto = new ProductoDTO();
+
         dto.setId(p.getId());
         dto.setNombre(p.getNombre());
         dto.setDescripcion(p.getDescripcion());
         dto.setPrecio(p.getPrecio());
         dto.setStock(p.getStock());
         dto.setCategoria(p.getCategoria());
+        dto.setNombreMarca(p.getMarca().getNombre());
 
         return dto;
     }

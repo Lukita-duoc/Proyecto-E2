@@ -20,7 +20,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/clientes")
-@CrossOrigin(origins = "http://localhost:8080")
 @Tag(name = "Clientes", description = "Controlador para el CRUD de clientes")
 public class ClienteController {
 

@@ -11,6 +11,7 @@ public class MarcaMapper {
         if(m == null) return null;
         MarcaDTO dto = new MarcaDTO();
 
+        dto.setId(m.getId());
         dto.setNombre(m.getNombre());
         dto.setPaisOrigen(m.getPaisOrigen());
 

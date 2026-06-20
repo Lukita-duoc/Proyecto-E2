@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmpresaDTO {
+    private Long empresaId;
     private String nombreEmpresa;
     private String tipoEmpresa;
+    private String region;
 }
