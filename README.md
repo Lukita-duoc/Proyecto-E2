@@ -1,91 +1,180 @@
-Integrantes:
-Lucas Ortiz, Cristopher Rojas
+# Servicio de Logística
 
-# SERVICIO DE LOGISTICA
+## Integrantes
 
-El proyecto fue diseñado con fines académicos para implementar:
-* Comunicación distribuida y APIs REST.
+* Lucas Ortiz
+* Cristopher Rojas
+
+## Descripción
+
+Este proyecto fue desarrollado con fines académicos para implementar conceptos de:
+
+* Comunicación distribuida mediante APIs REST.
 * Persistencia desacoplada e integración de microservicios.
 * Descubrimiento de servicios y gateway centralizado.
+* Arquitectura basada en microservicios utilizando Spring Cloud.
 
 ---
 
-## Arquitectura del Sistema
-El sistema se compone de los siguientes microservicios:
+# Arquitectura del Sistema
 
-| Microservicio | Responsabilidad / Descripción |
-| :--- | :--- |
-| **`clientes-service`** | Gestión de clientes y empresas asociadas. |
-| **`productos-service`** | Catálogo de productos y marcas. |
-| **`empleados-service`** | Gestión de empleados y sucursales. |
-| **`proveedores-service`** | Administración de proveedores y contactos. |
-| **`inventario-service`** | Control de stock mínimo y stock actual por sucursal. |
-| **`órdenes-service`** | Gestión de órdenes de compra y detalles de venta. |
-| **`facturación-service`** | Generación de facturas y métodos de pago. |
-| **`envíos-service`** | Control de despachos, transportistas y seguimiento de envíos. |
+El sistema está compuesto por los siguientes microservicios:
 
----
-
-## Tecnologías Aplicadas
-
-* **Lenguaje:** Java 25
-* **Framework Principal:** Spring Boot
-* **Ecosistema Cloud:** Spring Cloud, OpenFeign, Eureka Server, API Gateway
-* **Persistencia y Datos:** Spring Data JPA, MySQL, Flyway
-* **Herramientas de Desarrollo:** Lombok, Validation API
+| Microservicio         | Responsabilidad                                               | Testing                | Swagger               |
+| --------------------- | ------------------------------------------------------------- | ---------------------- | --------------------- |
+| `clientes-service`    | Gestión de clientes y empresas asociadas.                     | Unitario / Integración | Habilitado            |
+| `productos-service`   | Catálogo de productos y marcas.                               | Unitario / Integración | Habilitado            |
+| `empleados-service`   | Gestión de empleados y sucursales.                            | Unitario / Integración | Habilitado            |
+| `proveedores-service` | Administración de proveedores y contactos.                    | N/A                    | Excluido del Proxy UI |
+| `inventario-service`  | Control de stock mínimo y stock actual por sucursal.          | N/A                    | Excluido del Proxy UI |
+| `ordenes-service`     | Gestión de órdenes de compra y detalles de venta.             | N/A                    | Excluido del Proxy UI |
+| `facturacion-service` | Generación de facturas y métodos de pago.                     | N/A                    | Excluido del Proxy UI |
+| `envios-service`      | Control de despachos, transportistas y seguimiento de envíos. | Unitario / Integración | Habilitado            |
 
 ---
 
-## Componentes de Infraestructura
+# Tecnologías Utilizadas
 
-### Eureka Server
-Servicio de descubrimiento para el registro y localización dinámica de microservicios sin usar IPs estáticas.
+## Backend
 
-### API Gateway
-Único punto de entrada centralizado para recibir y enrutar todas las peticiones del cliente hacia los microservicios correspondientes.
+* Java 25
+* Spring Boot (WebMVC)
 
-### Comunicación Entre Servicios
-La comunicación interna se realiza mediante OpenFeign, permitiendo consultas síncronas y seguras entre microservicios.
+## Spring Cloud
 
-**Ejemplo de flujo de consultas:**
-* `inventario-service` ➔ consultar productos y sucursales
-* `órdenes-service` ➔ consultar clientes y productos
-* `facturación-service` ➔ consultar clientes y órdenes
-* `envíos-service` ➔ consultar órdenes
+* Spring Cloud
+* OpenFeign
+* Eureka Server
+* API Gateway
+
+## Persistencia
+
+* Spring Data JPA
+* MySQL
+* Flyway
+
+## Desarrollo
+
+* Lombok
+* Jakarta Validation API
+
+## Documentación
+
+* Springdoc OpenAPI
+* Swagger UI v3.0.2
+
+## Testing
+
+* JUnit 5
+* Mockito
+* Spring Boot Test
+
+## Infraestructura
+
+* Docker
+* Docker Compose
 
 ---
 
-## Microservicios Implementados y Entidades
+# Componentes de Infraestructura
 
-* **Microservicio Clientes**
-  * *Entidades:* Cliente, Empresa
-* **Microservicio Productos**
-  * *Entidades:* Producto, Marca
-* **Microservicio Empleados**
-  * *Entidades:* Empleado, Sucursal
-* **Microservicio Proveedores**
-  * *Entidades:* Proveedor, Contactar Proveedor
-* **Microservicio Inventario**
-  * *Entidades:* Inventario
-* **Microservicio Órdenes de Compra**
-  * *Entidades:* Orden Compra, DetalleOrden
-* **Microservicio Facturación**
-  * *Entidades:* Factura
-* **Microservicio Envíos**
-  * *Entidades:* Envio
+## Eureka Server
+
+Servicio de descubrimiento encargado del registro y localización dinámica de microservicios, evitando el uso de direcciones IP estáticas.
+
+## API Gateway
+
+Punto de entrada centralizado para recibir y enrutar todas las solicitudes hacia los microservicios correspondientes.
 
 ---
 
-## Endpoints Extras
+# Comunicación Entre Servicios
+
+La comunicación interna se realiza mediante **OpenFeign**, permitiendo consultas síncronas entre microservicios.
+
+### Ejemplos de Integración
+
+* `inventario-service` → consulta productos y sucursales.
+* `ordenes-service` → consulta clientes y productos.
+* `facturacion-service` → consulta clientes y órdenes.
+* `envios-service` → consulta órdenes.
+
+---
+
+# Documentación Unificada (Swagger)
+
+La documentación interactiva se encuentra centralizada mediante el API Gateway.
+
+**URL de acceso:**
+
+```text
+http://localhost:8080/swagger-ui.html
+```
+
+Desde el selector superior de Swagger UI es posible alternar entre los servicios habilitados:
+
+* Clientes
+* Productos
+* Empleados
+* Envíos
+
+---
+
+# Entidades por Microservicio
+
+## Clientes
+
+* Cliente
+* Empresa
+
+## Productos
+
+* Producto
+* Marca
+
+## Empleados
+
+* Empleado
+* Sucursal
+
+## Proveedores
+
+* Proveedor
+* ContactoProveedor
+
+## Inventario
+
+* Inventario
+
+## Órdenes de Compra
+
+* OrdenCompra
+* DetalleOrden
+
+## Facturación
+
+* Factura
+
+## Envíos
+
+* Envio
+
+---
+
+# Endpoints Adicionales
 
 ```http
 GET /api/v1/clientes/rut/{rut}
 GET /api/v1/clientes/empresa/{empresaId}
+
 GET /api/v1/productos/stock/{id}
 GET /api/v1/productos/categoria/{categoria}
 GET /api/v1/productos/filtrarPrecio/{min}/{max}
+
 GET /api/v1/proveedores/pais/{pais}
+
 GET /api/v1/inventario/buscar-producto/{productoId}/{sucursalId}
 GET /api/v1/inventario/reporte-stock
-GET /api/v1/facturas/cliente/{idCliente}
 
+GET /api/v1/facturas/cliente/{idCliente}
+```
