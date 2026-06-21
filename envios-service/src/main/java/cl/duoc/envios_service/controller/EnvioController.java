@@ -4,6 +4,7 @@ import cl.duoc.envios_service.dto.EnvioDTO;
 import cl.duoc.envios_service.model.Envio;
 import cl.duoc.envios_service.service.EnvioService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -36,6 +37,25 @@ public class EnvioController {
     @Autowired
     private EnvioService envioService;
 
+    @Operation(
+            summary = "Lista a todas los envíos",
+            description = "Metodo que muestra una lista de todos los envíos registradas"
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "Envios encontradss",
+            content = @Content(
+                    mediaType = "application/json",
+                    array = @ArraySchema(
+                            schema = @Schema(implementation = EnvioDTO.class)
+                    )
+            )
+    )
+    @ApiResponse(
+            responseCode = "404",
+            description = "Envíos no encontradas",
+            content = @Content
+    )
     @GetMapping
     public ResponseEntity<List<?>> listar() {
         List<Envio> e = envioService.findAll();
@@ -76,7 +96,25 @@ public class EnvioController {
         return ResponseEntity.ok(dto);
     }
 
-
+    @Operation(
+        summary = "Guardar envíos",
+        description = "Método que guarda el envío a través del ID y verifica que exista"
+    )
+    @ApiResponse(responseCode = "200",
+            description = "Envío guardado con exito",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = EnvioDTO.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "400",
+            description = "Envio no pudo ser guardado",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
     @PostMapping
     public ResponseEntity<?> guardar(@Valid @RequestBody Envio envio) {
         Envio e = envioService.save(envio);
@@ -109,10 +147,10 @@ public class EnvioController {
             description = "Método que busca eliminar un envío a través del ID (Long)"
     )
     @ApiResponse(responseCode = "404",
-            description = "Producto no encontrado para eliminar",
+            description = "Envío no encontrado para eliminar",
             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @ApiResponse(responseCode = "204",
-            description = "Producto eliminado correctamente")
+            description = "Envío eliminado correctamente")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         envioService.deleteById(id);

@@ -20,7 +20,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/empresas")
-@CrossOrigin(origins = "http://localhost:8080")
 
 @Tag(name = "Empresas", description = "Controlador para el CRUD de empresas")
 public class EmpresaController {
@@ -54,7 +53,7 @@ public class EmpresaController {
 
     @Operation(
             summary = "Busca empresa",
-            description = "Busca una empresa a travez de la ID"
+            description = "Busca una empresa a través de la ID"
     )
     @ApiResponse(
             responseCode = "200",
@@ -81,7 +80,7 @@ public class EmpresaController {
 
     @Operation(
             summary = "Busca Por ID una empresa",
-            description = "Obtiene por ID y retorna un objeto ClaseDTO ."
+            description = "Obtiene por ID y retorna un objeto ClaseDTO."
     )
     @ApiResponse(
             responseCode = "200",
@@ -143,7 +142,7 @@ public class EmpresaController {
     )
     @ApiResponse(
             responseCode = "404",
-            description = "el id de la empresa no se encontro",
+            description = "el id de la empresa no se encontró.",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
@@ -169,7 +168,7 @@ public class EmpresaController {
     )
     @ApiResponse(
             responseCode = "404",
-            description = "el id de la empresa no se encontro",
+            description = "el id de la empresa no se encontró.",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
