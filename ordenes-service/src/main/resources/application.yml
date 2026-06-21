@@ -3,6 +3,3 @@ spring:
     name: ordenes-service
   config:
     import: "${SPRING_CONFIG_IMPORT:optional:configserver:http://localhost:8888}"
-
-server:
-  port: 0
