@@ -55,7 +55,7 @@ public class SucursalControllerTest {
     }
     
     @Test
-    @DisplayName("GET - Debe retornar 200 ok con la lista de Sucursales")
+    @DisplayName("GET /api/v1/sucursales - Debe retornar 200 ok con la lista de Sucursales")
     public void testListar() throws Exception{
         Mockito.when(sucursalService.findAll()).thenReturn(Arrays.asList(new Sucursal(), new Sucursal()));
 
@@ -77,7 +77,7 @@ public class SucursalControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.capacidad").value(25));
     }
     @Test
-    @DisplayName("GET /api/v1/sucursales/listaDetallada -> Debe retornar 200 OK y la lista de DTOs")
+    @DisplayName("GET /api/v1/sucursales/listaDetallada{id} -> Debe retornar 200 OK y la lista de DTOs")
     void testListarDTO() throws Exception {
         Mockito.when(sucursalService.buscarDTO(1L)).thenReturn(sucursalDTOMock);
 
@@ -89,7 +89,7 @@ public class SucursalControllerTest {
     }
 
     @Test
-    @DisplayName("POST / -> Debe retornar 201 Created y la sucursal guardada")
+    @DisplayName("POST /{id} -> Debe retornar 201 Created y la sucursal guardada")
     void testGuardar() throws Exception {
         Mockito.when(sucursalService.save(Mockito.any(Sucursal.class))).thenReturn(sucursalMock);
 

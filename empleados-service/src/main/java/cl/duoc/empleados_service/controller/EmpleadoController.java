@@ -1,6 +1,7 @@
 package cl.duoc.empleados_service.controller;
 
 import cl.duoc.empleados_service.dto.EmpleadoDTO;
+import cl.duoc.empleados_service.exception.ErrorResponse;
 import cl.duoc.empleados_service.model.Empleado;
 import cl.duoc.empleados_service.service.EmpleadoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,7 +14,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

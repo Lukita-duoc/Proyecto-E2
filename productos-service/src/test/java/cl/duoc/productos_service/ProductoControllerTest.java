@@ -129,7 +129,7 @@ public class ProductoControllerTest {
     }
 
     @Test
-    @DisplayName("POST /api/v1/productos -> Debe retornar 201 Created y el producto guardado")
+    @DisplayName("POST /{id} -> Debe retornar 201 Created y el producto guardado")
     void testGuardar() throws Exception {
         Mockito.when(productoService.save(Mockito.any(Producto.class))).thenReturn(productoMock);
 
@@ -141,7 +141,7 @@ public class ProductoControllerTest {
     }
 
     @Test
-    @DisplayName("DELETE /api/v1/productos/{id} -> Debe retornar 204 No Content")
+    @DisplayName("DELETE /{id} -> Debe retornar 204 No Content")
     void testEliminar() throws Exception {
         Mockito.doNothing().when(productoService).deleteById(10L);
 
@@ -150,7 +150,7 @@ public class ProductoControllerTest {
     }
 
     @Test
-    @DisplayName("PUT /api/v1/productos/{id} -> Debe retornar 200 OK y el producto modificado")
+    @DisplayName("PUT /{id} -> Debe retornar 200 OK y el producto modificado")
     void testActualizar() throws Exception {
         Mockito.when(productoService.update(Mockito.eq(10L), Mockito.any(Producto.class))).thenReturn(productoMock);
 

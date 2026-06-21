@@ -1,6 +1,7 @@
 package cl.duoc.envios_service.controller;
 
 import cl.duoc.envios_service.dto.EnvioDTO;
+import cl.duoc.envios_service.exception.ErrorResponse;
 import cl.duoc.envios_service.model.Envio;
 import cl.duoc.envios_service.service.EnvioService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,7 +15,6 @@ import jakarta.ws.rs.Produces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

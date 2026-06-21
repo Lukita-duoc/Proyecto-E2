@@ -53,7 +53,7 @@ public class MarcaControllerTest {
     }
 
     @Test
-    @DisplayName("GET / -> Debe retornar 200 OK con la lista de marcas")
+    @DisplayName("GET /api/v1/marcas -> Debe retornar 200 OK con la lista de marcas")
     public void testListar() throws Exception{
         Mockito.when(marcaService.findAll()).thenReturn(Arrays.asList(new Marca(), new Marca()));
 
@@ -89,7 +89,7 @@ public class MarcaControllerTest {
     }
 
     @Test
-    @DisplayName("POST / -> Debe retornar 201 Created y la marca guardada")
+    @DisplayName("POST /{id} -> Debe retornar 201 Created y la marca guardada")
     void testGuardar() throws Exception {
         Mockito.when(marcaService.save(Mockito.any(Marca.class))).thenReturn(marcaMock);
 
