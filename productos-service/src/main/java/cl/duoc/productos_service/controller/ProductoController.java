@@ -45,6 +45,14 @@ public class ProductoController {
             description = "Productos no encontradas",
             content = @Content
     )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @GetMapping
     public ResponseEntity<List<?>> listar() {
         List<Producto> p = productoService.findAll();
@@ -69,6 +77,14 @@ public class ProductoController {
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
             )
     )
     @GetMapping("/{id}")
@@ -98,6 +114,14 @@ public class ProductoController {
                     schema = @Schema(implementation = ErrorResponse.class)
             )
     )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @GetMapping("/listaDetallada/{id}")
     public ResponseEntity<?> listarDTO(@PathVariable Long id){
         ProductoDTO dto = productoService.buscarDTO(id);
@@ -123,6 +147,14 @@ public class ProductoController {
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
             )
     )
     @GetMapping("/stock/{id}")
@@ -154,6 +186,14 @@ public class ProductoController {
                     schema = @Schema(implementation = ErrorResponse.class)
             )
     )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @GetMapping("/categoria/{categoria}")
     public ResponseEntity<List<?>> filtrarCategoria(@PathVariable String categoria) {
         List<Producto> productos = productoService.findByCategoria(categoria);
@@ -182,6 +222,14 @@ public class ProductoController {
                     schema = @Schema(implementation = ErrorResponse.class)
             )
     )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @GetMapping("/filtrarPrecio/{min}/{max}")
     public ResponseEntity<List<?>> precioEntre(@PathVariable int min, @PathVariable int max) {
         List<Producto> productos = productoService.findByPrecioBetween(min, max);
@@ -208,6 +256,14 @@ public class ProductoController {
                     schema = @Schema(implementation = ErrorResponse.class)
             )
     )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @PostMapping
     public ResponseEntity<?> guardar(@Valid @RequestBody Producto p) {
         Producto producto = productoService.save(p);
@@ -229,6 +285,14 @@ public class ProductoController {
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
             )
     )
     @DeleteMapping("/{id}")
@@ -255,6 +319,14 @@ public class ProductoController {
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
             )
     )
     @PutMapping("/{id}")

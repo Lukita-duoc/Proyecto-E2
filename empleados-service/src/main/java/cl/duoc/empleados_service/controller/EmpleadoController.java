@@ -46,6 +46,14 @@ public class EmpleadoController {
             description = "Empleados no encontrados",
             content = @Content
     )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @GetMapping
     public ResponseEntity<List<?>> listar() {
         List<Empleado> e = empleadoService.findAll();
@@ -70,6 +78,14 @@ public class EmpleadoController {
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
             )
     )
     @GetMapping("/{id}")
@@ -97,6 +113,14 @@ public class EmpleadoController {
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
             )
     )
     @GetMapping("/listaDetallada")
@@ -127,6 +151,14 @@ public class EmpleadoController {
                     schema = @Schema(implementation = ErrorResponse.class)
             )
     )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @GetMapping("/sucursal/{idSucursal}")
     public ResponseEntity<List<?>> buscarPorIdSucursal(@PathVariable Long idSucursal) {
         List<Empleado> empleados = empleadoService.findByIdSucursal(idSucursal);
@@ -153,6 +185,14 @@ public class EmpleadoController {
                     schema = @Schema(implementation = ErrorResponse.class)
             )
     )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @PostMapping
     public ResponseEntity<?> guardar(@Valid @RequestBody Empleado empleado) {
         Empleado e = empleadoService.save(empleado);
@@ -174,6 +214,14 @@ public class EmpleadoController {
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
             )
     )
     @DeleteMapping("/{id}")
@@ -200,6 +248,14 @@ public class EmpleadoController {
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
             )
     )
     @PutMapping("/{id}")

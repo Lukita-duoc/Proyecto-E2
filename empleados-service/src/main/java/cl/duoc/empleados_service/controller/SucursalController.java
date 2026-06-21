@@ -46,6 +46,14 @@ public class SucursalController {
             description = "Sucursales no encontradas",
             content = @Content
     )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @GetMapping
     public ResponseEntity<List<?>> listar() {
         List<Sucursal> s = sucursalService.findAll();
@@ -71,6 +79,14 @@ public class SucursalController {
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
             )
     )
     @GetMapping("/{id}")
@@ -102,6 +118,14 @@ public class SucursalController {
                     schema = @Schema(implementation = ErrorResponse.class)
             )
     )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @GetMapping("/listaDetallada/{id}")
     public ResponseEntity<?> listaDetallada(@PathVariable Long id) {
         SucursalDTO dto = sucursalService.buscarDTO(id);
@@ -128,6 +152,14 @@ public class SucursalController {
                     schema = @Schema(implementation = ErrorResponse.class)
             )
     )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @PostMapping
     public ResponseEntity<?> guardar(@Valid @RequestBody Sucursal sucursal) {
         Sucursal s = sucursalService.save(sucursal);
@@ -145,10 +177,18 @@ public class SucursalController {
     )
     @ApiResponse(
             responseCode = "404",
-            description = "el id de la sucursal no se encontró",
+            description = "el id de sucursal no se encontró",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
             )
     )
     @DeleteMapping("/{id}")
@@ -175,6 +215,14 @@ public class SucursalController {
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
             )
     )
     @PutMapping("/{id}")

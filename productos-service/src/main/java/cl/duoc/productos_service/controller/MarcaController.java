@@ -45,6 +45,14 @@ public class MarcaController {
             description = "Marcas no encontradas",
             content = @Content
     )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @GetMapping
     public ResponseEntity<List<?>> listar() {
         List<Marca> m = marcaService.findAll();
@@ -69,6 +77,14 @@ public class MarcaController {
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
             )
     )
     @GetMapping("/{id}")
@@ -98,6 +114,14 @@ public class MarcaController {
                     schema = @Schema(implementation = ErrorResponse.class)
             )
     )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @GetMapping("/listaDetallada")
     public ResponseEntity<List<?>> listarDTO(){
         List<MarcaDTO> dto = marcaService.listaDetallada();
@@ -125,6 +149,14 @@ public class MarcaController {
                     schema = @Schema(implementation = ErrorResponse.class)
             )
     )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @PostMapping
     public ResponseEntity<?> guardar(@Valid @RequestBody Marca m) {
         Marca marca = marcaService.save(m);
@@ -147,6 +179,14 @@ public class MarcaController {
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
             )
     )
     @DeleteMapping("/{id}")
@@ -173,6 +213,14 @@ public class MarcaController {
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
             )
     )
     @PutMapping("/{id}")

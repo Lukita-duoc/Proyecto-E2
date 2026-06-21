@@ -25,7 +25,7 @@ import java.util.List;
 204: No hay contenido, asi es como se confirma que algo se borró y no hay nada. Relacionado con el DELETE
 404: BAD REQUEST (Quizás se introducieron malos datos)
 400: Datos incorrectamente colocados
-
+500: Error interno del servidor
 */
 
 @RestController
@@ -56,6 +56,14 @@ public class EnvioController {
             description = "Envíos no encontradas",
             content = @Content
     )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @GetMapping
     public ResponseEntity<List<?>> listar() {
         List<Envio> e = envioService.findAll();
@@ -72,6 +80,14 @@ public class EnvioController {
     @ApiResponse(responseCode = "404",
         description = "Envío no encontrado",
         content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarId(@PathVariable Long id) {
         Envio e = envioService.findById(id);
@@ -89,6 +105,14 @@ public class EnvioController {
     @ApiResponse(responseCode = "404",
         description = "Detalle de envío no encontrado",
         content = @Content(schema = @Schema(implementation = ErrorResponse.class ) ))
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @GetMapping("/detalle/{id}")
     public ResponseEntity<EnvioDTO> buscarPorIdDto(@PathVariable Long id) {
         EnvioDTO dto = envioService.buscarDTO(id);
@@ -115,6 +139,14 @@ public class EnvioController {
                     schema = @Schema(implementation = ErrorResponse.class)
             )
     )
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @PostMapping
     public ResponseEntity<?> guardar(@Valid @RequestBody Envio envio) {
         Envio e = envioService.save(envio);
@@ -135,6 +167,14 @@ public class EnvioController {
     @ApiResponse(responseCode = "200",
             description = "Envío actualizado correctamente",
             content = @Content(schema = @Schema(implementation = EnvioDTO.class)))
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @PutMapping("/{id}")
     public ResponseEntity<Envio> actualizar(@PathVariable Long id, @Valid @RequestBody Envio envio) {
         Envio actualizado = envioService.update(id, envio);
@@ -151,6 +191,14 @@ public class EnvioController {
             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @ApiResponse(responseCode = "204",
             description = "Envío eliminado correctamente")
+    @ApiResponse(
+            responseCode = "500",
+            description = "Error interno del servidor al procesar la solicitud.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = "object", implementation = ErrorResponse.class)
+            )
+    )
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         envioService.deleteById(id);
