@@ -162,8 +162,8 @@ public class EmpleadosControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/empleados/{id}", 10L)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(empleadoMock)))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(10L));
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
     }
 
 

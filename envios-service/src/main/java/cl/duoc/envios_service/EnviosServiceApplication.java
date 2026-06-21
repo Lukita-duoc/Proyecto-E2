@@ -19,7 +19,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 				version = "1.0.1",
 				description = "Documentación de API de Envios con todos los endpoints creados",
 				contact = @Contact(
-						name = "Equipo Rocket",
+						name = "Cristopher Rojas",
 						email = "cristo.rojasv@duocuc.cl"
 
 				)

@@ -27,12 +27,12 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @Operation(
-            summary = "Lista a todas las clientes",
-            description = "Metodo que muestra una lista de todas las clientes registradas"
+            summary = "Lista a todos los clientes",
+            description = "Metodo que muestra una lista de todos los clientes registrados"
     )
     @ApiResponse(
             responseCode = "200",
-            description = "Clientes encontradas",
+            description = "Clientes encontrados",
             content = @Content(
                     mediaType = "application/json",
                     array = @ArraySchema(
@@ -42,7 +42,7 @@ public class ClienteController {
     )
     @ApiResponse(
             responseCode = "404",
-            description = "Clientes no encontradas",
+            description = "Clientes no encontrados",
             content = @Content
     )
     @GetMapping
@@ -52,11 +52,11 @@ public class ClienteController {
 
     @Operation(
             summary = "Busca cliente",
-            description = "Busca una cliente a travez de la ID"
+            description = "Busca un cliente a través de la ID"
     )
     @ApiResponse(
             responseCode = "200",
-            description = "Cliente Encontrada",
+            description = "Cliente Encontrado",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ClienteDTO.class)
@@ -64,7 +64,7 @@ public class ClienteController {
     )
     @ApiResponse(
             responseCode = "404",
-            description = "Cliente no encontrada",
+            description = "Cliente no encontrado",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
@@ -78,12 +78,12 @@ public class ClienteController {
     }
 
     @Operation(
-            summary = "Busca Por ID una cliente",
+            summary = "Busca Por ID a un cliente",
             description = "Obtiene por ID y retorna un objeto ClaseDTO ."
     )
     @ApiResponse(
             responseCode = "200",
-            description = "ClienteDTO encontrada",
+            description = "ClienteDTO encontrado",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ClienteDTO.class)
@@ -91,7 +91,7 @@ public class ClienteController {
     )
     @ApiResponse(
             responseCode = "404",
-            description = "ClienteDTO no encontrada",
+            description = "ClienteDTO no encontrado",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
@@ -106,11 +106,11 @@ public class ClienteController {
 
     @Operation(
             summary = "Buscar Clientes de empresa",
-            description = "Busca todas las clientes del mismo empresa"
+            description = "Busca todos los clientes de la misma empresa"
     )
     @ApiResponse(
             responseCode = "200",
-            description = "Clientes encontradas",
+            description = "Clientes encontrados",
             content = @Content(
                     mediaType = "application/json",
                     array = @ArraySchema(
@@ -120,7 +120,7 @@ public class ClienteController {
     )
     @ApiResponse(
             responseCode = "404",
-            description = "Clientes no encontradas",
+            description = "Clientes no encontrados",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
@@ -134,11 +134,11 @@ public class ClienteController {
 
     @Operation(
             summary = "Crear Clientes",
-            description = "Crea una Cliente y la guarda en la BD"
+            description = "Crea un Cliente y lo guarda en la BD"
     )
     @ApiResponse(
-            responseCode = "201",
-            description = "Cliente creada con exito",
+            responseCode = "200",
+            description = "Cliente creado con exito",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ClienteDTO.class)
@@ -146,7 +146,7 @@ public class ClienteController {
     )
     @ApiResponse(
             responseCode = "400",
-            description = "Cliente no pudo ser creada",
+            description = "Cliente no pudo ser creado",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
@@ -161,16 +161,16 @@ public class ClienteController {
 
     @Operation(
             summary = "eliminar Clientes",
-            description = "Busca las cliente por ID y las elimina"
+            description = "Busca los cliente por ID y los elimina"
     )
     @ApiResponse(
             responseCode = "204",
-            description = "Cliente eliminada con éxito.",
+            description = "Cliente eliminado con éxito.",
             content = @Content
     )
     @ApiResponse(
             responseCode = "404",
-            description = "el id de la cliente no se encontro",
+            description = "el id del cliente no se encontró",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
@@ -184,11 +184,11 @@ public class ClienteController {
 
     @Operation(
             summary = "Actualizar Clientes",
-            description = "Busca las cliente por ID y las actualiza"
+            description = "Busca los cliente por ID y las actualiza"
     )
     @ApiResponse(
             responseCode = "200",
-            description = "Cliente actualizada con éxito.",
+            description = "Cliente actualizado con éxito.",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ClienteDTO.class)
@@ -196,7 +196,7 @@ public class ClienteController {
     )
     @ApiResponse(
             responseCode = "404",
-            description = "el id de la cliente no se encontro",
+            description = "el id del cliente no se encontró",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
@@ -211,11 +211,11 @@ public class ClienteController {
 
     @Operation(
             summary = "Busca cliente por rut",
-            description = "Busca una cliente a travez del rut"
+            description = "Busca un cliente a través del rut"
     )
     @ApiResponse(
             responseCode = "200",
-            description = "Cliente Encontrada",
+            description = "Cliente Encontrado",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ClienteDTO.class)
@@ -223,7 +223,7 @@ public class ClienteController {
     )
     @ApiResponse(
             responseCode = "404",
-            description = "Cliente no encontrada",
+            description = "Cliente no encontrado",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)
