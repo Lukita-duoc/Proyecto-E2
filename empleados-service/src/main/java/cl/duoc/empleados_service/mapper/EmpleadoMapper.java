@@ -15,6 +15,8 @@ public class EmpleadoMapper {
         dto.setNombreCompleto(e.getNombre() + " "+ e.getApellido());
         dto.setCorreo(e.getCorreo());
         dto.setCargo(e.getCargo());
+        dto.setFechaContrato(e.getFechaContrato());
+        dto.setSucursal(e.getSucursal());
 
         return dto;
     }

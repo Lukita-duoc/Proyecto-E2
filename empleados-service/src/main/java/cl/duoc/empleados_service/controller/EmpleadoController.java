@@ -96,12 +96,12 @@ public class EmpleadoController {
     }
 
     @Operation(
-            summary = "Busca Por ID un empleado",
-            description = "Obtiene por ID y retorna un objeto ClaseDTO ."
+            summary = "Listado de Empleados DTO",
+            description = "Retorna una lista de empleadosDTO."
     )
     @ApiResponse(
             responseCode = "200",
-            description = "EmpleadoDTO encontrado",
+            description = "EmpleadosDTO encontrado",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = EmpleadoDTO.class)
@@ -109,7 +109,7 @@ public class EmpleadoController {
     )
     @ApiResponse(
             responseCode = "404",
-            description = "EmpleadoDTO no encontrado",
+            description = "EmpleadosDTO no encontrados",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = ErrorResponse.class)

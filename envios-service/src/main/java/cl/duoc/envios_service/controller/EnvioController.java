@@ -96,8 +96,8 @@ public class EnvioController {
     }
 
     @Operation(
-            summary = "Buscar por ID el detalle del envío.",
-            description = "Método que busca el detalle del envío a través del ID (Long)"
+            summary = "Buscar por ID el envíoDTO.",
+            description = "Método que busca el detalle del envíoDTO a través del ID (Long)"
     )
     @ApiResponse(responseCode = "200",
             description = "Detalle de envío encontrado",

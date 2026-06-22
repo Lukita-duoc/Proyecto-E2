@@ -7,4 +7,5 @@ public class SucursalDTO {
     private Long id;
     private String nombreSucursal;
     private String ciudad;
+    private Integer capacidad;
 }

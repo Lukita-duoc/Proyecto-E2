@@ -61,7 +61,7 @@ public class MarcaController {
 
     @Operation(
             summary = "Busca marca",
-            description = "Busca una marca a travez de la ID"
+            description = "Busca una marca a través de la ID"
     )
     @ApiResponse(
             responseCode = "200",
@@ -95,7 +95,7 @@ public class MarcaController {
     }
 
     @Operation(
-            summary = "Busca todas las marcas",
+            summary = "Busca todas las marcasDTO",
             description = "Retorna una lista DTO ."
     )
     @ApiResponse(

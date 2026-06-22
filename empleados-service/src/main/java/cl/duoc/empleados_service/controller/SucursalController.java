@@ -172,7 +172,7 @@ public class SucursalController {
     )
     @ApiResponse(
             responseCode = "204",
-            description = "Sucursal actualizada con éxito.",
+            description = "Sucursal eliminada con éxito.",
             content = @Content
     )
     @ApiResponse(
@@ -198,7 +198,7 @@ public class SucursalController {
     }
 
     @Operation(
-            summary = "Actualizar Sucursals",
+            summary = "Actualizar Sucursales",
             description = "Busca las sucursales por ID y las actualiza"
     )
     @ApiResponse(

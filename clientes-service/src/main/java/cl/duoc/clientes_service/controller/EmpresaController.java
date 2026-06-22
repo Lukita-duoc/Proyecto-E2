@@ -95,12 +95,12 @@ public class EmpresaController {
     }
 
     @Operation(
-            summary = "Busca Por ID una empresa",
-            description = "Obtiene por ID y retorna un objeto ClaseDTO."
+            summary = "Lista EmpresasDTO",
+            description = "Retorna una lista de EmpresasDTO"
     )
     @ApiResponse(
             responseCode = "200",
-            description = "EmpresaDTO encontrada",
+            description = "EmpresaDTO encontradas",
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = EmpresaDTO.class)
@@ -169,7 +169,7 @@ public class EmpresaController {
     )
     @ApiResponse(
             responseCode = "204",
-            description = "Empresa actualizada con éxito.",
+            description = "Empresa eliminada con éxito.",
             content = @Content
     )
     @ApiResponse(

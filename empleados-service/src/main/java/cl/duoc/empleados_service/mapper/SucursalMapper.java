@@ -15,6 +15,7 @@ public class SucursalMapper {
         dto.setId(s.getIdSucursal());
         dto.setNombreSucursal(s.getNombre());
         dto.setCiudad(s.getCiudad());
+        dto.setCapacidad(s.getCapacidad());
 
         return dto;
     }

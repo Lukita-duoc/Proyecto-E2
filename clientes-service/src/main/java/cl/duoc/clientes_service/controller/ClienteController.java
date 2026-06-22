@@ -94,8 +94,8 @@ public class ClienteController {
     }
 
     @Operation(
-            summary = "Busca Por ID a un cliente",
-            description = "Obtiene por ID y retorna un objeto ClaseDTO ."
+            summary = "Busca Por ID a un clienteDTO",
+            description = "Obtiene por ID y retorna a un clienteDTO ."
     )
     @ApiResponse(
             responseCode = "200",
